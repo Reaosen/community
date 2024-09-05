@@ -1,4 +1,4 @@
-package codingforlove.community.community;
+package codingforlove.community;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
