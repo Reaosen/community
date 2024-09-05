@@ -42,6 +42,8 @@ public class GithubProvider {
         try (Response response = client.newCall(request).execute())
         {
             String string = response.toString();
+            // TODO 返回的json不是user信息，而是Response{protocol=h2, code=200, message=, url=https://api.github.com/user}
+
             return JSON.parseObject(string, UserDTO.class);
         } catch (IOException e) {
             e.printStackTrace();

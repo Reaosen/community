@@ -3,10 +3,6 @@
 <head>
     <title>Getting Started: Serving Web Content</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <script src="js/jquery-3.7.1.js" type="application/javascript"></script>
-    <script src="js/bootstrap.bundle.min.js" type="application/javascript"></script>
-    <script src="js/bootstrap.esm.min.js" type="application/javascript"></script>
-    <script src="js/bootstrap.min.js" type="application/javascript"></script>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap.rtl.min.css">
     <link rel="stylesheet" href="css/bootstrap-grid.min.css">
@@ -31,14 +27,12 @@
             <div class="d-flex flex-row-reverse">
                 <div class="p-2">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
+                        <li class="nav-item" th:if="${session.user == null}">
 <!--                            <a class="nav-link active" aria-current="page" href="https://github.com/login/oauth/authorize?client_id=Iv23liwYXBUUgR4l37Bo&redirect_uri=http://localhost:8080/callback&scope=user&state=763">登录</a>-->
                             <a class="nav-link active" aria-current="page" href="https://gitee.com/oauth/authorize?client_id=7e0df6b4bb3e4edc48e84259b8cd61a4780a8669cb002c149921c33a79f45530&redirect_uri=http://localhost:8080/giteeCallback&response_type=code">登录</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                关于我
-                            </button>
+                        <li class="nav-item dropdown" th:if="${session.user != null}">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" th:text="${session.user.getName()}"></button>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="#">消息中心</a></li>
                                 <li><a class="dropdown-item" href="#">个人资料</a></li>
@@ -51,6 +45,9 @@
         </div>
     </nav>
 
-
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js" type="application/javascript"></script>
+    <script src="js/bootstrap.bundle.min.js" type="application/javascript"></script>
+<!--    <script src="js/bootstrap.esm.min.js" type="application/javascript"></script>-->
+<!--    <script src="js/bootstrap.min.js" type="application/javascript"></script>-->
 </body>
 </html>

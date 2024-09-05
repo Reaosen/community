@@ -4,6 +4,7 @@ import codingforlove.community.DTO.AccessTokenDTO;
 import codingforlove.community.DTO.UserDTO;
 import codingforlove.community.Provider.GiteeProvider;
 import codingforlove.community.Provider.GithubProvider;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -46,7 +47,8 @@ public class AuthorizeController {
     }
 
     @GetMapping("/giteeCallback")
-    public String giteeCallback(@RequestParam(name = "code") String code){
+    public String giteeCallback(@RequestParam(name = "code") String code,
+                                HttpServletRequest request){
 
         AccessTokenDTO accessTokenDTO = new AccessTokenDTO();
         accessTokenDTO.setCode(code);
@@ -57,9 +59,17 @@ public class AuthorizeController {
 
         String accessToken = giteeProvider.getAccessToken(accessTokenDTO);
         UserDTO user = giteeProvider.getUser(accessToken);
-        System.out.println(user.getName());
+//        System.out.println(user.getName());
+        if (user != null){
+            // 登录成功 写cookie和session
+            request.getSession().setAttribute("user", user);
+            return "redirect:/";
+        }else {
+            //登录失败 重新登录
 
-        return "index";
+            return "redirect:/";
+        }
+
     }
 
 
