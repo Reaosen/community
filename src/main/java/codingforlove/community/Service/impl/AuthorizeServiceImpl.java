@@ -6,7 +6,9 @@ import codingforlove.community.Mapper.UserMapper;
 import codingforlove.community.Model.User;
 import codingforlove.community.Provider.GiteeProvider;
 import codingforlove.community.Service.AuthorizeService;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -29,7 +31,7 @@ public class AuthorizeServiceImpl implements AuthorizeService {
     @Value("${gitee.grant.type}")
     private String grantType;
     @Override
-    public String giteeCallback(String code, HttpServletRequest request) {
+    public String giteeCallback(String code, HttpServletResponse response) {
         AccessTokenDTO accessTokenDTO = new AccessTokenDTO();
         accessTokenDTO.setCode(code);
         accessTokenDTO.setClient_id(clientId);
@@ -50,7 +52,7 @@ public class AuthorizeServiceImpl implements AuthorizeService {
             user.setGmtModified(LocalDateTime.now());
 
             userMapper.insert(user);
-            request.getSession().setAttribute("user", giteeUser);
+            response.addCookie(new Cookie("token", user.getToken()));
             return "redirect:/";
         }else {
             //登录失败 重新登录
