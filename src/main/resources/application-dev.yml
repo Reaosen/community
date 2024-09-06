@@ -1,0 +1,13 @@
+community:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    host: localhost
+    port: 3306
+    database: community
+    username: root
+    password: 1234
+  gitee:
+    client-id: 7e0df6b4bb3e4edc48e84259b8cd61a4780a8669cb002c149921c33a79f45530
+    client-secret: 2d87dc70075ddd7d2550e7478f450679e8127729207a42ccd2ddbba3416eaafb
+    redirect-url: http://localhost:8080/giteeCallback
+    grant-type: authorization_code

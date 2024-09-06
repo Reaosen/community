@@ -1,0 +1,23 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: community
+  profiles:
+    active: dev
+  datasource:
+      driver-class-name: ${community.datasource.driver-class-name}
+      url: jdbc:mysql://${community.datasource.host}:${community.datasource.port}/${community.datasource.database}?serverTimezone=UTC
+      username: ${community.datasource.username}
+      password: ${community.datasource.password}
+
+gitee:
+  client:
+    id: ${community.gitee.client-id}
+    secret: ${community.gitee.client-secret}
+  redirect:
+    uri: ${community.gitee.redirect-url}
+  grant:
+    type: ${community.gitee.grant-type}
+
