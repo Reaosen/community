@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="cn">
+<head>
+    <title>论坛</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="css/community.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap.rtl.min.css">
+    <link rel="stylesheet" href="css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="css/bootstrap-grid.rtl.min.css">
+    <link rel="stylesheet" href="css/bootstrap-reboot.min.css">
+    <link rel="stylesheet" href="css/bootstrap-reboot.rtl.min.css">
+    <link rel="stylesheet" href="css/bootstrap-utilities.min.css">
+    <link rel="stylesheet" href="css/bootstrap-utilities.rtl.min.css">
+</head>
+<body>
+<nav class="navbar navbar-fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand navbar-left " href="#">发布 - 论坛</a>
+        <!--            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
+        <!--                <span class="navbar-toggler-icon"></span>-->
+        <!--            </button>-->
+        <form class="d-flex navbar-left " role="search">
+            <input class="form-control me-2" type="search" placeholder="搜点感兴趣的" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">搜索</button>
+        </form>
+        <div class="navbar-right">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li th:if="${session.user != null}">
+                    <a class="nav-link active" href="/publish">发布</a>
+                </li>
+                <li class="nav-item" th:if="${session.user == null}">
+                    <!--                            <a class="nav-link active" aria-current="page" href="https://github.com/login/oauth/authorize?client_id=Iv23liwYXBUUgR4l37Bo&redirect_uri=http://localhost:8080/callback&scope=user&state=763">登录</a>-->
+                    <a class="nav-link active" aria-current="page"
+                       href="https://gitee.com/oauth/authorize?client_id=7e0df6b4bb3e4edc48e84259b8cd61a4780a8669cb002c149921c33a79f45530&redirect_uri=http://localhost:8080/giteeCallback&response_type=code">登录</a>
+                </li>
+                <li class="nav-item dropdown" th:if="${session.user != null}">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false" th:text="${session.user.getName()}"></button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">消息中心</a></li>
+                        <li><a class="dropdown-item" href="#">个人资料</a></li>
+                        <li><a class="dropdown-item" href="#">退出登录</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container-fluid main">
+        <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+            <h2><i class="bi bi-bookmark-plus"></i>发布</h2>
+            <hr>
+            <form action="/publish" method="post">
+                <div class="mb-3">
+                    <label for="title" class="form-label">问题标题：</label>
+                    <input type="text" class="form-control" id="title" name="title" th:value="${title}" placeholder="问题标题...">
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label">问题补充：(必填，请参照右侧提示)</label>
+                    <textarea class="form-control" name="description" id="description" cols="30"
+                              rows="10" th:text="${description}"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="tag" class="form-label">添加标签</label>
+                    <input type="text" class="form-control" id="tag" name="tag" th:value="${tag}" placeholder="输入标签，以，分隔...">
+                </div>
+                <span class="alert alert-danger" th:text="${error}" th:if="${error != null}"></span>
+                <button type="submit" class="btn btn-success btn-publish">发布</button>
+            </form>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+            <h3>问题发起指南</h3>
+            • 问题标题: 请用精简的语言描述您发布的问题，不超过25字 <br>
+            • 问题补充: 详细补充您的问题内容，并确保问题描述清晰直观, 并提供一些相关的资料<br>
+            • 选择标签: 选择一个或者多个合适的标签，用逗号隔开，每个标签不超过10个字<br>
+        </div>
+    </div>
+</nav>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js" type="application/javascript"></script>
+<script src="js/bootstrap.bundle.min.js" type="application/javascript"></script>
+<!--    <script src="js/bootstrap.esm.min.js" type="application/javascript"></script>-->
+<!--    <script src="js/bootstrap.min.js" type="application/javascript"></script>-->
+</body>
+</html>
