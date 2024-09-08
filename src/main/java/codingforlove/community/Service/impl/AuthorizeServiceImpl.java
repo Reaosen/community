@@ -48,6 +48,7 @@ public class AuthorizeServiceImpl implements AuthorizeService {
             user.setAccountId(String.valueOf(giteeUser.getId()));
             user.setName(giteeUser.getName());
             user.setToken(UUID.randomUUID().toString());
+            user.setAvatarUrl(giteeUser.getAvatarUrl());
             user.setGmtCreate(LocalDateTime.now());
             user.setGmtModified(LocalDateTime.now());
 

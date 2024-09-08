@@ -1,11 +1,12 @@
-package codingforlove.community.Model;
+package codingforlove.community.DTO;
 
+import codingforlove.community.Model.User;
 import lombok.Data;
 
 import java.time.LocalDateTime;
 
 @Data
-public class Question {
+public class QuestionDTO {
     private String title;
     private String description;
     private Integer creatorId;
@@ -13,6 +14,7 @@ public class Question {
     private Integer commentCount;
     private Integer viewCount;
     private String tag;
-    private LocalDateTime gmtCreate;
+    private User user;
     private LocalDateTime gmtModified;
+    private LocalDateTime gmtCreate;
 }

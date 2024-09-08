@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="cn">
 <head>
     <title>论坛</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap.rtl.min.css">
     <link rel="stylesheet" href="css/bootstrap-grid.min.css">
@@ -11,45 +11,68 @@
     <link rel="stylesheet" href="css/bootstrap-reboot.rtl.min.css">
     <link rel="stylesheet" href="css/bootstrap-utilities.min.css">
     <link rel="stylesheet" href="css/bootstrap-utilities.rtl.min.css">
+    <link rel="stylesheet" href="css/community.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">论坛</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="搜点感兴趣的" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">搜索</button>
-            </form>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent"></div>
-            <div class="d-flex flex-row-reverse">
-                <div class="p-2">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li th:if="${session.user != null}">
-                            <a class="nav-link active" href="/publish">发布</a>
-                        </li>
-                        <li class="nav-item" th:if="${session.user == null}">
-<!--                            <a class="nav-link active" aria-current="page" href="https://github.com/login/oauth/authorize?client_id=Iv23liwYXBUUgR4l37Bo&redirect_uri=http://localhost:8080/callback&scope=user&state=763">登录</a>-->
-                            <a class="nav-link active" aria-current="page" href="https://gitee.com/oauth/authorize?client_id=7e0df6b4bb3e4edc48e84259b8cd61a4780a8669cb002c149921c33a79f45530&redirect_uri=http://localhost:8080/giteeCallback&response_type=code">登录</a>
-                        </li>
-                        <li class="nav-item dropdown" th:if="${session.user != null}">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" th:text="${session.user.getName()}"></button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">消息中心</a></li>
-                                <li><a class="dropdown-item" href="#">个人资料</a></li>
-                                <li><a class="dropdown-item" href="#">退出登录</a></li>
-                            </ul>
-                        </li>
-                    </ul>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">论坛</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="搜点感兴趣的" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">搜索</button>
+        </form>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent"></div>
+        <div class="d-flex flex-row-reverse">
+            <div class="p-2">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li th:if="${session.user != null}">
+                        <a class="nav-link active" href="/publish">发布</a>
+                    </li>
+                    <li class="nav-item" th:if="${session.user == null}">
+                        <!--                            <a class="nav-link active" aria-current="page" href="https://github.com/login/oauth/authorize?client_id=Iv23liwYXBUUgR4l37Bo&redirect_uri=http://localhost:8080/callback&scope=user&state=763">登录</a>-->
+                        <a class="nav-link active" aria-current="page"
+                           href="https://gitee.com/oauth/authorize?client_id=7e0df6b4bb3e4edc48e84259b8cd61a4780a8669cb002c149921c33a79f45530&redirect_uri=http://localhost:8080/giteeCallback&response_type=code">登录</a>
+                    </li>
+                    <li class="nav-item dropdown" th:if="${session.user != null}">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                aria-expanded="false" th:text="${session.user.getName()}"></button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">消息中心</a></li>
+                            <li><a class="dropdown-item" href="#">个人资料</a></li>
+                            <li><a class="dropdown-item" href="#">退出登录</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+<div class="container-fluid main">
+    <div class="row">
+        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+            <h2><span class="bi bi-list-task"></span>发现</h2>
+            <hr>
+            <div class="d-flex position-relative" th:each="question : ${questions}">
+                <img th:src="${question.user.avatarUrl}" class="question-img flex-shrink-0 me-3 ">
+                <div>
+                    <h5 class="mt-0" th:text="${question.title}"></h5>
+                    <span th:text="${question.description}"></span>
+                    <span class="question-text-desc">[[${question.viewCount}]]浏览·[[${question.commentCount}]]回复·[[${#temporals.format(question.gmtCreate, 'dd-MM-yyyy HH:mm')}]]</span>
                 </div>
             </div>
         </div>
-    </nav>
+        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+            <h3>热点话题</h3>
+        </div>
+    </div>
+</div>
 
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js" type="application/javascript"></script>
-    <script src="js/bootstrap.bundle.min.js" type="application/javascript"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js" type="application/javascript"></script>
+<script src="js/bootstrap.bundle.min.js" type="application/javascript"></script>
 <!--    <script src="js/bootstrap.esm.min.js" type="application/javascript"></script>-->
 <!--    <script src="js/bootstrap.min.js" type="application/javascript"></script>-->
 </body>

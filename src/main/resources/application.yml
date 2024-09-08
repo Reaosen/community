@@ -21,3 +21,7 @@ gitee:
   grant:
     type: ${community.gitee.grant-type}
 
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+

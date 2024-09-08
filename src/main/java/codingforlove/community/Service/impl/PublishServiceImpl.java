@@ -6,7 +6,6 @@ import codingforlove.community.Model.Question;
 import codingforlove.community.Model.User;
 import codingforlove.community.Service.PublishService;
 import codingforlove.community.Util.CookieUtil;
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

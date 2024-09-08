@@ -11,3 +11,12 @@ body{
     float: left;
     margin-bottom: 15px;
 }
+.question-img{
+    width: 42px;
+    height: 42px;
+}
+.question-text-desc{
+    font-size: 12px;
+    font-weight: normal;
+    color: #999;
+}
