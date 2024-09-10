@@ -1,9 +1,8 @@
 package codingforlove.community.Service;
 
-import codingforlove.community.DTO.QuestionDTO;
+import codingforlove.community.DTO.PaginationDTO;
 import org.springframework.ui.Model;
-import java.util.List;
 
 public interface QuestionService {
-    List<QuestionDTO> list(Model model);
+    PaginationDTO list(Model model, Integer page, Integer size);
 }
