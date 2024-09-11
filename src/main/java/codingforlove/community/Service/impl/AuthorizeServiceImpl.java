@@ -45,14 +45,19 @@ public class AuthorizeServiceImpl implements AuthorizeService {
         if (giteeUser != null){
             // 登录成功 写cookie和session
             User user = new User();
-            user.setAccountId(String.valueOf(giteeUser.getId()));
-            user.setName(giteeUser.getName());
-            user.setToken(UUID.randomUUID().toString());
-            user.setAvatarUrl(giteeUser.getAvatarUrl());
-            user.setGmtCreate(LocalDateTime.now());
-            user.setGmtModified(LocalDateTime.now());
+            User userByAccountId = userMapper.findByAccountId(Math.toIntExact(giteeUser.getId()));
+            if (userByAccountId != null) {
+                user = userByAccountId;
+            }else {
+                user.setAccountId(String.valueOf(giteeUser.getId()));
+                user.setName(giteeUser.getName());
+                user.setToken(UUID.randomUUID().toString());
+                user.setAvatarUrl(giteeUser.getAvatarUrl());
+                user.setGmtCreate(LocalDateTime.now());
+                user.setGmtModified(LocalDateTime.now());
+                userMapper.insert(user);
+            }
 
-            userMapper.insert(user);
             response.addCookie(new Cookie("token", user.getToken()));
             return "redirect:/";
         }else {

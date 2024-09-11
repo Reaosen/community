@@ -17,7 +17,9 @@ public class IndexServiceImpl implements IndexService {
     @Override
     public String login(HttpServletRequest request) {
         //TODO mysql数据库压力过大，可以换成redis
-        request.getSession().setAttribute("user", CookieUtil.findUserByToken(request));
+        User user = CookieUtil.findUserByToken(request);
+
+        request.getSession().setAttribute("user", user);
 
         return "index";
     }

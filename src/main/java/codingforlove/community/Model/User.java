@@ -8,8 +8,8 @@ import java.time.LocalDateTime;
 @Data
 public class User {
     private int id;
-    private  String accountId;
-    private  String name;
+    private String accountId;
+    private String name;
     private String token;
     private String avatarUrl;
     private LocalDateTime gmtModified;

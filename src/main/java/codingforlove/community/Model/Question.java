@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 public class Question {
     private String title;
     private String description;
-    private Integer creatorId;
+    private Integer creatorAccountId;
     private Integer likeCount;
     private Integer commentCount;
     private Integer viewCount;

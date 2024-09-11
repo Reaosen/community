@@ -50,7 +50,7 @@ public class PublishServiceImpl implements PublishService {
         }
 
         Question question = new Question();
-        question.setCreatorId(user.getId());
+        question.setCreatorAccountId(Integer.valueOf(user.getAccountId()));
         question.setTitle(title);
         question.setDescription(description);
         question.setTag(tag);
