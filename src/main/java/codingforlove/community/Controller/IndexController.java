@@ -21,9 +21,8 @@ public class IndexController {
                         Model model,
                         @RequestParam(name = "page", defaultValue = "1") Integer page,
                         @RequestParam(name = "size", defaultValue = "5") Integer size) {
-        String login = indexService.login(request);
-        model.addAttribute("pagination", questionService.list(model, page, size));
-        return login;
+
+        return indexService.login(request, model, page, size);
 
     }
 }

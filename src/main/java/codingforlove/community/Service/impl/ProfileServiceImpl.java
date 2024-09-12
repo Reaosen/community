@@ -4,7 +4,6 @@ import codingforlove.community.DTO.PaginationDTO;
 import codingforlove.community.Model.User;
 import codingforlove.community.Service.ProfileService;
 import codingforlove.community.Service.QuestionService;
-import codingforlove.community.Util.CookieUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,7 +21,7 @@ public class ProfileServiceImpl implements ProfileService {
                           Model model,
                           @RequestParam(name = "page", defaultValue = "1") Integer page,
                           @RequestParam(name = "size", defaultValue = "5") Integer size) {
-        User user = CookieUtil.findUserByToken(request);
+        User user = (User) request.getSession().getAttribute("user");
         if (user == null){
             //todo 未登录提醒
             return "redirect:/";

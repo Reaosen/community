@@ -5,7 +5,6 @@ import codingforlove.community.Mapper.UserMapper;
 import codingforlove.community.Model.Question;
 import codingforlove.community.Model.User;
 import codingforlove.community.Service.PublishService;
-import codingforlove.community.Util.CookieUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,7 +42,7 @@ public class PublishServiceImpl implements PublishService {
             return "publish";
         }
 
-        User user = CookieUtil.findUserByToken(request);
+        User user = (User) request.getSession().getAttribute("user");
         if (user == null) {
             model.addAttribute("error", "用户未登录");
             return "publish";
