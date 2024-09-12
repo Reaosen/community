@@ -18,12 +18,18 @@
 <div class="container-fluid main">
     <div class="row">
         <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
-            <h2><span class="bi bi-list-task"></span>发现</h2>
+            <h2 style="margin-top: 15px">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list-ul" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+            </svg>
+                发现
+            </h2>
             <hr>
             <div class="d-flex position-relative" th:each="question : ${pagination.questions}">
                 <img th:src="${question.user.avatarUrl}" class="question-img flex-shrink-0 me-3 ">
                 <div>
-                    <h5 class="mt-0" th:text="${question.title}"></h5>
+                    <a th:href="'/question/' + ${question.id}" th:text="${question.title}"
+                    style="font-size: 20px; text-decoration: none; color: #8bb9fe;"></a><br>
                     <span th:text="${question.description}"></span>
                     <span class="question-text-desc">[[${question.viewCount}]]浏览·[[${question.commentCount}]]回复·[[${#temporals.format(question.gmtCreate, 'dd-MM-yyyy HH:mm')}]]</span>
                 </div>
@@ -58,7 +64,7 @@
             </nav>
         </div>
         <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
-            <h3>热点话题</h3>
+            <h3 style="margin-top: 15px">热点话题</h3>
         </div>
     </div>
 </div>

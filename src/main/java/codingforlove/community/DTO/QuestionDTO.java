@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 
 @Data
 public class QuestionDTO {
+    private Integer id;
     private String title;
     private String description;
     private Integer creatorAccountId;

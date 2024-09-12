@@ -1,6 +1,5 @@
 package codingforlove.community.Service;
 
-import codingforlove.community.Model.Question;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestParam;

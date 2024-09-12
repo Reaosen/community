@@ -29,4 +29,7 @@ public interface QuestionMapper {
 
     @Select("select count(1) from question where creator_account_id = #{accountId}")
     Integer countByAccountId(@Param(value = "accountId") Integer accountId);
+
+    @Select("select * from question where id = #{id}")
+    Question findById(@Param(value = "id")Integer id);
 }
