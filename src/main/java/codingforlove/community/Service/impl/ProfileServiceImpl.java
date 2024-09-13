@@ -43,7 +43,7 @@ public class ProfileServiceImpl implements ProfileService {
             model.addAttribute("section", "concerns");
             model.addAttribute("sectionName", "我的关注");
         }
-        PaginationDTO paginationDTO = questionService.list(Integer.parseInt(user.getAccountId()), page, size);
+        PaginationDTO paginationDTO = questionService.list(user.getAccountId(), page, size);
         model.addAttribute("pagination", paginationDTO);
         return "profile";
     }

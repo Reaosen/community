@@ -1,6 +1,7 @@
 package codingforlove.community.Controller;
 
 import codingforlove.community.Service.AuthorizeService;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,5 +19,14 @@ public class AuthorizeController {
     public String giteeCallback(@RequestParam(name = "code") String code,
                                 HttpServletResponse response) {
        return authorizeService.giteeCallback(code, response);
+    }
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request,
+                         HttpServletResponse response){
+        request.getSession().removeAttribute("user");
+        Cookie cookie = new Cookie("token", null);
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
+        return "redirect:/";
     }
 }

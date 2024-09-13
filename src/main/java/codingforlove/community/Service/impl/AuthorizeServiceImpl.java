@@ -9,6 +9,7 @@ import codingforlove.community.Service.AuthorizeService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -49,7 +50,7 @@ public class AuthorizeServiceImpl implements AuthorizeService {
             if (userByAccountId != null) {
                 user = userByAccountId;
             }else {
-                user.setAccountId(String.valueOf(giteeUser.getId()));
+                user.setAccountId(Math.toIntExact(giteeUser.getId()));
                 user.setName(giteeUser.getName());
                 user.setToken(UUID.randomUUID().toString());
                 user.setAvatarUrl(giteeUser.getAvatarUrl());
@@ -57,7 +58,8 @@ public class AuthorizeServiceImpl implements AuthorizeService {
                 user.setGmtModified(LocalDateTime.now());
                 userMapper.insert(user);
             }
-
+            UserDTO userDTO = new UserDTO();
+            BeanUtils.copyProperties(user, userDTO);
             response.addCookie(new Cookie("token", user.getToken()));
             return "redirect:/";
         }else {
