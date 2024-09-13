@@ -23,6 +23,7 @@ public class PublishServiceImpl implements PublishService {
     public String doPublish(@RequestParam("title") String title,
                             @RequestParam("description") String description,
                             @RequestParam("tag") String tag,
+                            @RequestParam("id") Integer id,
                             Model model,
                             HttpServletRequest request) {
         model.addAttribute("title", title);
@@ -49,14 +50,31 @@ public class PublishServiceImpl implements PublishService {
         }
 
         Question question = new Question();
-        question.setCreatorAccountId(Integer.valueOf(user.getAccountId()));
+        question.setCreatorAccountId(user.getAccountId());
         question.setTitle(title);
         question.setDescription(description);
         question.setTag(tag);
-        question.setGmtCreate(LocalDateTime.now());
-        question.setGmtModified(LocalDateTime.now());
-        questionMapper.create(question);
+        question.setId(id);
+        if (question.getId() == null){
+            question.setGmtCreate(LocalDateTime.now());
+            question.setGmtModified(LocalDateTime.now());
+            questionMapper.create(question);
+        }else {
+            question.setGmtModified(LocalDateTime.now());
+            questionMapper.update(question);
+        }
 
         return "redirect:/";
+    }
+
+    @Override
+    public String edit(Integer id, Model model) {
+        Question question = questionMapper.findById(id);
+        model.addAttribute("title", question.getTitle());
+        model.addAttribute("description", question.getDescription());
+        model.addAttribute("tag", question.getTag());
+        model.addAttribute("id", question.getId());
+
+        return "publish";
     }
 }
