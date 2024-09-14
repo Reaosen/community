@@ -1,20 +1,30 @@
 package codingforlove.community.Mapper;
 
 import codingforlove.community.Model.User;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
+import codingforlove.community.Model.UserExample;
+import java.util.List;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
 
-@Mapper
 public interface UserMapper {
-    @Insert("insert into user (account_id, name, token, avatar_url, gmt_modified, gmt_create) " +
-            "values (#{accountId}, #{name}, #{token}, #{avatarUrl}, #{gmtModified}, #{gmtCreate}) ")
-    public void insert(User user);
+    long countByExample(UserExample example);
 
-    @Select("select * from user where token = #{token}")
-    User findByToken(@Param("token") String token);
+    int deleteByExample(UserExample example);
 
-    @Select("select * from user where account_id = #{accountId}")
-    User findByAccountId(@Param("accountId") Integer accountId);
+    int deleteByPrimaryKey(Integer id);
+
+    int insert(User record);
+
+    int insertSelective(User record);
+
+    List<User> selectByExample(UserExample example);
+
+    User selectByPrimaryKey(Integer id);
+
+    int updateByExampleSelective(@Param("record") User record, @Param("example") UserExample example);
+
+    int updateByExample(@Param("record") User record, @Param("example") UserExample example);
+
+    int updateByPrimaryKeySelective(User record);
+
+    int updateByPrimaryKey(User record);
 }
