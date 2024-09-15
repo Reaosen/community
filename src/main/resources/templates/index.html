@@ -30,8 +30,8 @@
                 <div>
                     <a th:href="'/question/' + ${question.id}" th:text="${question.title}"
                     style="font-size: 20px; text-decoration: none; color: #8bb9fe;"></a><br>
-                    <span th:text="${question.description}"></span>
-                    <span class="question-text-desc">[[${question.viewCount}]]浏览·[[${question.commentCount}]]回复·[[${#temporals.format(question.gmtCreate, 'dd-MM-yyyy HH:mm')}]]</span>
+                    <span th:text="${question.description}"></span><br>
+                    <span class="question-text-desc">[[${question.viewCount}]]浏览·[[${question.commentCount}]]回复·[[${#dates.format(question.gmtCreate, 'yyyy-MM-dd HH:mm:ss')}]]</span>
                 </div>
             </div>
             <nav aria-label="Page navigation example">

@@ -20,7 +20,7 @@
         <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
             <h3 style="margin-top: 15px"><span th:text="${question.title}"></span></h3>
             <span class="question-text-desc">
-                标签：[[${question.tag}]] | 作者 [[${question.user.name}]] | [[${#temporals.format(question.gmtCreate, 'dd-MM-yyyy HH:mm')}]] | 阅读数：[[${question.viewCount}]]
+                标签：[[${question.tag}]] | 作者 [[${question.user.name}]] | [[${#dates.format(question.gmtCreate, 'yyyy-MM-dd HH:mm:ss')}]] | 阅读数：[[${question.viewCount}]]
             </span>
             <hr>
             <p th:text="${question.description}"></p>

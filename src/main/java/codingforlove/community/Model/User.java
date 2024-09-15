@@ -1,7 +1,5 @@
 package codingforlove.community.Model;
 
-import java.util.Date;
-
 public class User {
     private Integer id;
 
@@ -15,9 +13,9 @@ public class User {
 
     private String token;
 
-    private Date gmtCreate;
+    private Long gmtCreate;
 
-    private Date gmtModified;
+    private Long gmtModified;
 
     public Integer getId() {
         return id;
@@ -67,19 +65,19 @@ public class User {
         this.token = token;
     }
 
-    public Date getGmtCreate() {
+    public Long getGmtCreate() {
         return gmtCreate;
     }
 
-    public void setGmtCreate(Date gmtCreate) {
+    public void setGmtCreate(Long gmtCreate) {
         this.gmtCreate = gmtCreate;
     }
 
-    public Date getGmtModified() {
+    public Long getGmtModified() {
         return gmtModified;
     }
 
-    public void setGmtModified(Date gmtModified) {
+    public void setGmtModified(Long gmtModified) {
         this.gmtModified = gmtModified;
     }
 }

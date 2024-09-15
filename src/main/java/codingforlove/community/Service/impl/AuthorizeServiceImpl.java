@@ -4,17 +4,16 @@ import codingforlove.community.DTO.AccessTokenDTO;
 import codingforlove.community.DTO.UserDTO;
 import codingforlove.community.Mapper.UserMapper;
 import codingforlove.community.Model.User;
+import codingforlove.community.Model.UserExample;
 import codingforlove.community.Provider.GiteeProvider;
 import codingforlove.community.Service.AuthorizeService;
 import jakarta.servlet.http.Cookie;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -46,16 +45,19 @@ public class AuthorizeServiceImpl implements AuthorizeService {
         if (giteeUser != null){
             // 登录成功 写cookie和session
             User user = new User();
-            User userByAccountId = userMapper.findByAccountId(Math.toIntExact(giteeUser.getId()));
-            if (userByAccountId != null) {
-                user = userByAccountId;
+            UserExample userExample = new UserExample();
+            userExample.createCriteria()
+                    .andAccountIdEqualTo(Long.valueOf(giteeUser.getAccountId()));
+            List<User> usersByAccountId = userMapper.selectByExample(userExample);
+            if (usersByAccountId.size() != 0) {
+                user = usersByAccountId.get(0);
             }else {
-                user.setAccountId(Math.toIntExact(giteeUser.getId()));
+                user.setAccountId(giteeUser.getId());
                 user.setName(giteeUser.getName());
                 user.setToken(UUID.randomUUID().toString());
                 user.setAvatarUrl(giteeUser.getAvatarUrl());
-                user.setGmtCreate(LocalDateTime.now());
-                user.setGmtModified(LocalDateTime.now());
+                user.setGmtCreate(System.currentTimeMillis());
+                user.setGmtModified(System.currentTimeMillis());
                 userMapper.insert(user);
             }
             UserDTO userDTO = new UserDTO();

@@ -1,10 +1,12 @@
 package codingforlove.community.DTO;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import lombok.Data;
 
 @Data
 public class UserDTO {
     private Long id;
+    @JSONField(name = "id")
     private Integer accountId;
     private String name;
     private String bio;

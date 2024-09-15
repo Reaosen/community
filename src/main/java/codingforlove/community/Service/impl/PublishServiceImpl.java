@@ -3,6 +3,7 @@ package codingforlove.community.Service.impl;
 import codingforlove.community.Mapper.QuestionMapper;
 import codingforlove.community.Mapper.UserMapper;
 import codingforlove.community.Model.Question;
+import codingforlove.community.Model.QuestionExample;
 import codingforlove.community.Model.User;
 import codingforlove.community.Service.PublishService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -10,8 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.time.LocalDateTime;
 
 @Service
 public class PublishServiceImpl implements PublishService {
@@ -23,7 +22,7 @@ public class PublishServiceImpl implements PublishService {
     public String doPublish(@RequestParam("title") String title,
                             @RequestParam("description") String description,
                             @RequestParam("tag") String tag,
-                            @RequestParam("id") Integer id,
+                            @RequestParam(value = "id", required = false) Integer id,
                             Model model,
                             HttpServletRequest request) {
         model.addAttribute("title", title);
@@ -50,18 +49,21 @@ public class PublishServiceImpl implements PublishService {
         }
 
         Question question = new Question();
-        question.setCreatorAccountId(user.getAccountId());
+        question.setCreatorAccountId(Math.toIntExact(user.getAccountId()));
         question.setTitle(title);
         question.setDescription(description);
         question.setTag(tag);
         question.setId(id);
         if (question.getId() == null){
-            question.setGmtCreate(LocalDateTime.now());
-            question.setGmtModified(LocalDateTime.now());
-            questionMapper.create(question);
+            question.setGmtCreate(System.currentTimeMillis());
+            question.setGmtModified(System.currentTimeMillis());
+            questionMapper.insert(question);
         }else {
-            question.setGmtModified(LocalDateTime.now());
-            questionMapper.update(question);
+            question.setGmtModified(System.currentTimeMillis());
+            QuestionExample questionExample = new QuestionExample();
+            questionExample.createCriteria()
+                            .andIdEqualTo(question.getId());
+            questionMapper.updateByExampleSelective(question, questionExample);
         }
 
         return "redirect:/";
@@ -69,7 +71,7 @@ public class PublishServiceImpl implements PublishService {
 
     @Override
     public String edit(Integer id, Model model) {
-        Question question = questionMapper.findById(id);
+        Question question = questionMapper.selectByPrimaryKey(id);
         model.addAttribute("title", question.getTitle());
         model.addAttribute("description", question.getDescription());
         model.addAttribute("tag", question.getTag());

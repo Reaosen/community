@@ -31,7 +31,7 @@ public class PublishController {
     public String doPublish(@RequestParam("title") String title,
                             @RequestParam("description") String description,
                             @RequestParam("tag") String tag,
-                            @RequestParam("id") Integer id,
+                            @RequestParam(value = "id", required = false) Integer id,
                             Model model,
                             HttpServletRequest request){
         return publishService.doPublish(title, description, tag, id, model, request);

@@ -24,4 +24,6 @@ gitee:
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
+  type-aliases-package: codingforlove.community.model
+  mapper-locations: classpath:mapper/*.xml
 

@@ -1,35 +1,41 @@
 package codingforlove.community.Mapper;
 
 import codingforlove.community.Model.Question;
-import org.apache.ibatis.annotations.*;
-
+import codingforlove.community.Model.QuestionExample;
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.session.RowBounds;
 
-@Mapper
 public interface QuestionMapper {
-    @Insert("insert into question (title, description, creator_account_id, like_count, comment_count, view_count, tag, gmt_create, gmt_modified) " +
-            "values (#{title},#{description},#{creatorAccountId},#{likeCount},#{commentCount},#{viewCount},#{tag},#{gmtCreate},#{gmtModified})")
-    public void create(Question question);
+    long countByExample(QuestionExample example);
 
-    @Select("select * from question")
-    List<Question> find();
+    int deleteByExample(QuestionExample example);
 
-    @Select("select * from question limit #{offset}, #{size}")
-    List<Question> list(@Param(value = "offset") Integer offset, @Param(value = "size") Integer size);
+    int deleteByPrimaryKey(Integer id);
 
+    int insert(Question record);
 
-    @Select("select count(1) from question")
-    Integer count();
+    int insertSelective(Question record);
 
-    @Select("select * from question where creator_account_id = #{accountId} limit #{offset}, #{size}")
-    List<Question> listByUserId(@Param(value = "accountId") int accountId, @Param(value = "offset") Integer offset, @Param(value = "size") Integer size);
+    List<Question> selectByExampleWithBLOBsWithRowbounds(QuestionExample example, RowBounds rowBounds);
 
-    @Select("select count(1) from question where creator_account_id = #{accountId}")
-    Integer countByAccountId(@Param(value = "accountId") Integer accountId);
+    List<Question> selectByExampleWithBLOBs(QuestionExample example);
 
-    @Select("select * from question where id = #{id}")
-    Question findById(@Param(value = "id")Integer id);
+    List<Question> selectByExampleWithRowbounds(QuestionExample example, RowBounds rowBounds);
 
-    @Update("update question set title = #{title}, description = #{description}, tag = #{tag}, gmt_modified = #{gmtModified} where id = #{id}")
-    void update(Question question);
+    List<Question> selectByExample(QuestionExample example);
+
+    Question selectByPrimaryKey(Integer id);
+
+    int updateByExampleSelective(@Param("record") Question record, @Param("example") QuestionExample example);
+
+    int updateByExampleWithBLOBs(@Param("record") Question record, @Param("example") QuestionExample example);
+
+    int updateByExample(@Param("record") Question record, @Param("example") QuestionExample example);
+
+    int updateByPrimaryKeySelective(Question record);
+
+    int updateByPrimaryKeyWithBLOBs(Question record);
+
+    int updateByPrimaryKey(Question record);
 }

@@ -16,6 +16,6 @@ public class QuestionDTO {
     private Integer viewCount;
     private String tag;
     private User user;
-    private LocalDateTime gmtModified;
-    private LocalDateTime gmtCreate;
+    private Long gmtModified;
+    private Long gmtCreate;
 }
