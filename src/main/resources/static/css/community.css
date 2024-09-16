@@ -24,3 +24,6 @@ body{
     right: auto !important;
     left: 0 !important;
 }
+.questions-list{
+    margin-block: 15px;
+}

@@ -1,5 +1,7 @@
 package codingforlove.community.Service.impl;
 
+import codingforlove.community.Exception.CustomizeErrorCode;
+import codingforlove.community.Exception.CustomizeException;
 import codingforlove.community.Mapper.QuestionMapper;
 import codingforlove.community.Mapper.UserMapper;
 import codingforlove.community.Model.Question;
@@ -63,7 +65,10 @@ public class PublishServiceImpl implements PublishService {
             QuestionExample questionExample = new QuestionExample();
             questionExample.createCriteria()
                             .andIdEqualTo(question.getId());
-            questionMapper.updateByExampleSelective(question, questionExample);
+            int updateCode = questionMapper.updateByExampleSelective(question, questionExample);
+            if (updateCode != 1){
+                throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
+            }
         }
 
         return "redirect:/";

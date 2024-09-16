@@ -20,7 +20,7 @@
         <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
             <h2  style="margin-top: 15px"><span th:text="${sectionName}"></span></h2>
             <hr>
-            <div class="d-flex position-relative" th:each="question : ${pagination.questions}">
+            <div class="d-flex position-relative questions-list" th:each="question : ${pagination.questions}">
                 <img th:src="${question.user.avatarUrl}" class="question-img flex-shrink-0 me-3 ">
                 <div>
                     <h5 class="mt-0" th:text="${question.title}"></h5>

@@ -2,6 +2,8 @@ package codingforlove.community.Service.impl;
 
 import codingforlove.community.DTO.QuestionDTO;
 import codingforlove.community.DTO.PaginationDTO;
+import codingforlove.community.Exception.CustomizeErrorCode;
+import codingforlove.community.Exception.CustomizeException;
 import codingforlove.community.Mapper.QuestionMapper;
 import codingforlove.community.Mapper.UserMapper;
 import codingforlove.community.Model.Question;
@@ -92,6 +94,9 @@ public class QuestionServiceImpl implements QuestionService {
     @Override
     public String  getById(Integer id, Model model) {
         Question question = questionMapper.selectByPrimaryKey(id);
+        if (question == null){
+            throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
+        }
         QuestionDTO questionDTO = new QuestionDTO();
         BeanUtils.copyProperties(question, questionDTO);
         UserExample userExample = new UserExample();
