@@ -35,7 +35,8 @@
                     编辑
                 </button>
             </a>
-            <a>
+<!--            todo 需要前端发送delete请求-->
+            <a th:href="@{'/question/' + ${question.id} + '/delete'}">
                 <button type="button" class="btn btn-outline-danger"
                         th:if="${session.user != null && session.user.getAccountId() == question.creatorAccountId}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"

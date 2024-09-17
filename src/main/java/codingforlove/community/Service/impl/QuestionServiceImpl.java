@@ -120,4 +120,13 @@ public class QuestionServiceImpl implements QuestionService {
         record.setViewCount(1);
         questionExtMapper.incView(record);
     }
+
+    @Override
+    public String deleteById(Integer id) {
+        int deleteByPrimaryKey = questionMapper.deleteByPrimaryKey(id);
+        if (deleteByPrimaryKey != 1){
+            throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
+        }
+        return "redirect:/";
+    }
 }

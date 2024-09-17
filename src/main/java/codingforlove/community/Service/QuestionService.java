@@ -12,4 +12,6 @@ public interface QuestionService {
     String getById(Integer id, Model model);
 
     void incView(Integer id);
+
+    String deleteById(Integer id);
 }
