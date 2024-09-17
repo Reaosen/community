@@ -7,8 +7,6 @@ public class Question {
 
     private Integer creatorAccountId;
 
-    private String description;
-
     private Integer likeCount;
 
     private Integer commentCount;
@@ -20,6 +18,8 @@ public class Question {
     private Long gmtCreate;
 
     private Long gmtModified;
+
+    private String description;
 
     public Integer getId() {
         return id;
