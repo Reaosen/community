@@ -10,4 +10,6 @@ public interface QuestionService {
     PaginationDTO list(int id, Integer page, Integer size);
 
     String getById(Integer id, Model model);
+
+    void incView(Integer id);
 }

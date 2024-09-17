@@ -4,6 +4,7 @@ import codingforlove.community.DTO.QuestionDTO;
 import codingforlove.community.DTO.PaginationDTO;
 import codingforlove.community.Exception.CustomizeErrorCode;
 import codingforlove.community.Exception.CustomizeException;
+import codingforlove.community.Mapper.QuestionExtMapper;
 import codingforlove.community.Mapper.QuestionMapper;
 import codingforlove.community.Mapper.UserMapper;
 import codingforlove.community.Model.Question;
@@ -24,6 +25,8 @@ import java.util.List;
 public class QuestionServiceImpl implements QuestionService {
     @Autowired
     private QuestionMapper questionMapper;
+    @Autowired
+    private QuestionExtMapper questionExtMapper;
     @Autowired
     private UserMapper userMapper;
 
@@ -105,6 +108,16 @@ public class QuestionServiceImpl implements QuestionService {
         List<User> users = userMapper.selectByExample(userExample);
         questionDTO.setUser(users.get(0));
         model.addAttribute("question", questionDTO);
+        //阅读数+1
+        incView(id);
         return "question";
+    }
+
+    @Override
+    public void incView(Integer id) {
+        Question record = new Question();
+        record.setId(id);
+        record.setViewCount(1);
+        questionExtMapper.incView(record);
     }
 }
