@@ -16,7 +16,7 @@ public class PublishController {
     @Autowired
     private PublishService publishService;
     @GetMapping("/publish/{id}")
-    public String edit(@PathVariable(name = "id") Integer id,
+    public String edit(@PathVariable(name = "id") Long id,
                        Model model){
 
         return publishService.edit(id, model);
@@ -31,7 +31,7 @@ public class PublishController {
     public String doPublish(@RequestParam("title") String title,
                             @RequestParam("description") String description,
                             @RequestParam("tag") String tag,
-                            @RequestParam(value = "id", required = false) Integer id,
+                            @RequestParam(value = "id", required = false) Long id,
                             Model model,
                             HttpServletRequest request){
         return publishService.doPublish(title, description, tag, id, model, request);

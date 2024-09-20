@@ -114,52 +114,52 @@ public class QuestionExample {
             return (Criteria) this;
         }
 
-        public Criteria andIdEqualTo(Integer value) {
+        public Criteria andIdEqualTo(Long value) {
             addCriterion("id =", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotEqualTo(Integer value) {
+        public Criteria andIdNotEqualTo(Long value) {
             addCriterion("id <>", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdGreaterThan(Integer value) {
+        public Criteria andIdGreaterThan(Long value) {
             addCriterion("id >", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdGreaterThanOrEqualTo(Integer value) {
+        public Criteria andIdGreaterThanOrEqualTo(Long value) {
             addCriterion("id >=", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdLessThan(Integer value) {
+        public Criteria andIdLessThan(Long value) {
             addCriterion("id <", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdLessThanOrEqualTo(Integer value) {
+        public Criteria andIdLessThanOrEqualTo(Long value) {
             addCriterion("id <=", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdIn(List<Integer> values) {
+        public Criteria andIdIn(List<Long> values) {
             addCriterion("id in", values, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotIn(List<Integer> values) {
+        public Criteria andIdNotIn(List<Long> values) {
             addCriterion("id not in", values, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdBetween(Integer value1, Integer value2) {
+        public Criteria andIdBetween(Long value1, Long value2) {
             addCriterion("id between", value1, value2, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotBetween(Integer value1, Integer value2) {
+        public Criteria andIdNotBetween(Long value1, Long value2) {
             addCriterion("id not between", value1, value2, "id");
             return (Criteria) this;
         }
@@ -244,52 +244,52 @@ public class QuestionExample {
             return (Criteria) this;
         }
 
-        public Criteria andCreatorAccountIdEqualTo(Integer value) {
+        public Criteria andCreatorAccountIdEqualTo(Long value) {
             addCriterion("creator_account_id =", value, "creatorAccountId");
             return (Criteria) this;
         }
 
-        public Criteria andCreatorAccountIdNotEqualTo(Integer value) {
+        public Criteria andCreatorAccountIdNotEqualTo(Long value) {
             addCriterion("creator_account_id <>", value, "creatorAccountId");
             return (Criteria) this;
         }
 
-        public Criteria andCreatorAccountIdGreaterThan(Integer value) {
+        public Criteria andCreatorAccountIdGreaterThan(Long value) {
             addCriterion("creator_account_id >", value, "creatorAccountId");
             return (Criteria) this;
         }
 
-        public Criteria andCreatorAccountIdGreaterThanOrEqualTo(Integer value) {
+        public Criteria andCreatorAccountIdGreaterThanOrEqualTo(Long value) {
             addCriterion("creator_account_id >=", value, "creatorAccountId");
             return (Criteria) this;
         }
 
-        public Criteria andCreatorAccountIdLessThan(Integer value) {
+        public Criteria andCreatorAccountIdLessThan(Long value) {
             addCriterion("creator_account_id <", value, "creatorAccountId");
             return (Criteria) this;
         }
 
-        public Criteria andCreatorAccountIdLessThanOrEqualTo(Integer value) {
+        public Criteria andCreatorAccountIdLessThanOrEqualTo(Long value) {
             addCriterion("creator_account_id <=", value, "creatorAccountId");
             return (Criteria) this;
         }
 
-        public Criteria andCreatorAccountIdIn(List<Integer> values) {
+        public Criteria andCreatorAccountIdIn(List<Long> values) {
             addCriterion("creator_account_id in", values, "creatorAccountId");
             return (Criteria) this;
         }
 
-        public Criteria andCreatorAccountIdNotIn(List<Integer> values) {
+        public Criteria andCreatorAccountIdNotIn(List<Long> values) {
             addCriterion("creator_account_id not in", values, "creatorAccountId");
             return (Criteria) this;
         }
 
-        public Criteria andCreatorAccountIdBetween(Integer value1, Integer value2) {
+        public Criteria andCreatorAccountIdBetween(Long value1, Long value2) {
             addCriterion("creator_account_id between", value1, value2, "creatorAccountId");
             return (Criteria) this;
         }
 
-        public Criteria andCreatorAccountIdNotBetween(Integer value1, Integer value2) {
+        public Criteria andCreatorAccountIdNotBetween(Long value1, Long value2) {
             addCriterion("creator_account_id not between", value1, value2, "creatorAccountId");
             return (Criteria) this;
         }

@@ -7,7 +7,7 @@ import lombok.Data;
 public class UserDTO {
     private Long id;
     @JSONField(name = "id")
-    private Integer accountId;
+    private Long accountId;
     private String name;
     private String bio;
     private String avatarUrl;

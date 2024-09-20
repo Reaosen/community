@@ -14,13 +14,13 @@ public class QuestionController {
     private QuestionService questionService;
 
     @GetMapping("/question/{id}")
-    public String question(@PathVariable(value = "id") Integer id,
+    public String question(@PathVariable(value = "id") Long id,
                            Model model){
         return questionService.getById(id, model);
     }
 
     @DeleteMapping("/question/{id}/delete")
-    public String delete(@PathVariable(value = "id") Integer id){
+    public String delete(@PathVariable(value = "id") Long id){
         return questionService.deleteById(id);
     }
 }

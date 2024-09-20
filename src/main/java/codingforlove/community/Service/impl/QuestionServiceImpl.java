@@ -48,7 +48,7 @@ public class QuestionServiceImpl implements QuestionService {
         for (Question question : questions) {
             UserExample userExample = new UserExample();
             userExample.createCriteria()
-                    .andAccountIdEqualTo(Long.valueOf(question.getCreatorAccountId()));
+                    .andAccountIdEqualTo(question.getCreatorAccountId());
             List<User> users = userMapper.selectByExample(userExample);
             QuestionDTO questionDTO = new QuestionDTO();
             BeanUtils.copyProperties(question, questionDTO);
@@ -61,7 +61,7 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public PaginationDTO list(int id, Integer page, Integer size) {
+    public PaginationDTO list(Long id, Integer page, Integer size) {
         PaginationDTO paginationDTO = new PaginationDTO();
         QuestionExample example = new QuestionExample();
         example.createCriteria()
@@ -82,7 +82,7 @@ public class QuestionServiceImpl implements QuestionService {
         for (Question question : questions) {
             UserExample userExample = new UserExample();
             userExample.createCriteria()
-                    .andAccountIdEqualTo(Long.valueOf(question.getCreatorAccountId()));
+                    .andAccountIdEqualTo(question.getCreatorAccountId());
             List<User> users = userMapper.selectByExample(userExample);
             QuestionDTO questionDTO = new QuestionDTO();
             BeanUtils.copyProperties(question, questionDTO);
@@ -95,7 +95,7 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public String  getById(Integer id, Model model) {
+    public String  getById(Long id, Model model) {
         Question question = questionMapper.selectByPrimaryKey(id);
         if (question == null){
             throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
@@ -114,7 +114,7 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public void incView(Integer id) {
+    public void incView(Long id) {
         Question record = new Question();
         record.setId(id);
         record.setViewCount(1);
@@ -122,7 +122,7 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public String deleteById(Integer id) {
+    public String deleteById(Long id) {
         int deleteByPrimaryKey = questionMapper.deleteByPrimaryKey(id);
         if (deleteByPrimaryKey != 1){
             throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);

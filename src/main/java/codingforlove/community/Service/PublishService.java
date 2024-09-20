@@ -8,9 +8,9 @@ public interface PublishService {
     public String doPublish(@RequestParam("title") String title,
                             @RequestParam("description") String description,
                             @RequestParam("tag") String tag,
-                            @RequestParam(value = "id", required = false) Integer id,
+                            @RequestParam(value = "id", required = false) Long id,
                             Model model,
                             HttpServletRequest request);
 
-    String edit(Integer id, Model model);
+    String edit(Long id, Model model);
 }

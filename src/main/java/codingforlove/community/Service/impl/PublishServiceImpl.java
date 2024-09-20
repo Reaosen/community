@@ -24,7 +24,7 @@ public class PublishServiceImpl implements PublishService {
     public String doPublish(@RequestParam("title") String title,
                             @RequestParam("description") String description,
                             @RequestParam("tag") String tag,
-                            @RequestParam(value = "id", required = false) Integer id,
+                            @RequestParam(value = "id", required = false) Long id,
                             Model model,
                             HttpServletRequest request) {
         model.addAttribute("title", title);
@@ -51,11 +51,15 @@ public class PublishServiceImpl implements PublishService {
         }
 
         Question question = new Question();
-        question.setCreatorAccountId(Math.toIntExact(user.getAccountId()));
+        question.setCreatorAccountId(user.getAccountId());
         question.setTitle(title);
         question.setDescription(description);
         question.setTag(tag);
         question.setId(id);
+        question.setViewCount(0);
+        question.setCommentCount(0);
+        question.setLikeCount(0);
+
         if (question.getId() == null){
             question.setGmtCreate(System.currentTimeMillis());
             question.setGmtModified(System.currentTimeMillis());
@@ -75,7 +79,7 @@ public class PublishServiceImpl implements PublishService {
     }
 
     @Override
-    public String edit(Integer id, Model model) {
+    public String edit(Long id, Model model) {
         Question question = questionMapper.selectByPrimaryKey(id);
         model.addAttribute("title", question.getTitle());
         model.addAttribute("description", question.getDescription());

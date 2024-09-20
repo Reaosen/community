@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="codingforlove.community.Mapper.QuestionMapper">
   <resultMap id="BaseResultMap" type="codingforlove.community.Model.Question">
-    <id column="id" jdbcType="INTEGER" property="id" />
+    <id column="id" jdbcType="BIGINT" property="id" />
     <result column="title" jdbcType="VARCHAR" property="title" />
-    <result column="creator_account_id" jdbcType="INTEGER" property="creatorAccountId" />
+    <result column="creator_account_id" jdbcType="BIGINT" property="creatorAccountId" />
     <result column="like_count" jdbcType="INTEGER" property="likeCount" />
     <result column="comment_count" jdbcType="INTEGER" property="commentCount" />
     <result column="view_count" jdbcType="INTEGER" property="viewCount" />
@@ -110,17 +110,17 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
     select 
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
     from question
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from question
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
   </delete>
   <delete id="deleteByExample" parameterType="codingforlove.community.Model.QuestionExample">
     delete from question
@@ -133,7 +133,7 @@
       like_count, comment_count, view_count, 
       tag, gmt_create, gmt_modified, 
       description)
-    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{creatorAccountId,jdbcType=INTEGER}, 
+    values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{creatorAccountId,jdbcType=BIGINT}, 
       #{likeCount,jdbcType=INTEGER}, #{commentCount,jdbcType=INTEGER}, #{viewCount,jdbcType=INTEGER}, 
       #{tag,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=BIGINT}, #{gmtModified,jdbcType=BIGINT}, 
       #{description,jdbcType=LONGVARCHAR})
@@ -174,13 +174,13 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
-        #{id,jdbcType=INTEGER},
+        #{id,jdbcType=BIGINT},
       </if>
       <if test="title != null">
         #{title,jdbcType=VARCHAR},
       </if>
       <if test="creatorAccountId != null">
-        #{creatorAccountId,jdbcType=INTEGER},
+        #{creatorAccountId,jdbcType=BIGINT},
       </if>
       <if test="likeCount != null">
         #{likeCount,jdbcType=INTEGER},
@@ -215,13 +215,13 @@
     update question
     <set>
       <if test="record.id != null">
-        id = #{record.id,jdbcType=INTEGER},
+        id = #{record.id,jdbcType=BIGINT},
       </if>
       <if test="record.title != null">
         title = #{record.title,jdbcType=VARCHAR},
       </if>
       <if test="record.creatorAccountId != null">
-        creator_account_id = #{record.creatorAccountId,jdbcType=INTEGER},
+        creator_account_id = #{record.creatorAccountId,jdbcType=BIGINT},
       </if>
       <if test="record.likeCount != null">
         like_count = #{record.likeCount,jdbcType=INTEGER},
@@ -251,9 +251,9 @@
   </update>
   <update id="updateByExampleWithBLOBs" parameterType="map">
     update question
-    set id = #{record.id,jdbcType=INTEGER},
+    set id = #{record.id,jdbcType=BIGINT},
       title = #{record.title,jdbcType=VARCHAR},
-      creator_account_id = #{record.creatorAccountId,jdbcType=INTEGER},
+      creator_account_id = #{record.creatorAccountId,jdbcType=BIGINT},
       like_count = #{record.likeCount,jdbcType=INTEGER},
       comment_count = #{record.commentCount,jdbcType=INTEGER},
       view_count = #{record.viewCount,jdbcType=INTEGER},
@@ -267,9 +267,9 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update question
-    set id = #{record.id,jdbcType=INTEGER},
+    set id = #{record.id,jdbcType=BIGINT},
       title = #{record.title,jdbcType=VARCHAR},
-      creator_account_id = #{record.creatorAccountId,jdbcType=INTEGER},
+      creator_account_id = #{record.creatorAccountId,jdbcType=BIGINT},
       like_count = #{record.likeCount,jdbcType=INTEGER},
       comment_count = #{record.commentCount,jdbcType=INTEGER},
       view_count = #{record.viewCount,jdbcType=INTEGER},
@@ -287,7 +287,7 @@
         title = #{title,jdbcType=VARCHAR},
       </if>
       <if test="creatorAccountId != null">
-        creator_account_id = #{creatorAccountId,jdbcType=INTEGER},
+        creator_account_id = #{creatorAccountId,jdbcType=BIGINT},
       </if>
       <if test="likeCount != null">
         like_count = #{likeCount,jdbcType=INTEGER},
@@ -311,12 +311,12 @@
         description = #{description,jdbcType=LONGVARCHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="codingforlove.community.Model.Question">
     update question
     set title = #{title,jdbcType=VARCHAR},
-      creator_account_id = #{creatorAccountId,jdbcType=INTEGER},
+      creator_account_id = #{creatorAccountId,jdbcType=BIGINT},
       like_count = #{likeCount,jdbcType=INTEGER},
       comment_count = #{commentCount,jdbcType=INTEGER},
       view_count = #{viewCount,jdbcType=INTEGER},
@@ -324,19 +324,19 @@
       gmt_create = #{gmtCreate,jdbcType=BIGINT},
       gmt_modified = #{gmtModified,jdbcType=BIGINT},
       description = #{description,jdbcType=LONGVARCHAR}
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="codingforlove.community.Model.Question">
     update question
     set title = #{title,jdbcType=VARCHAR},
-      creator_account_id = #{creatorAccountId,jdbcType=INTEGER},
+      creator_account_id = #{creatorAccountId,jdbcType=BIGINT},
       like_count = #{likeCount,jdbcType=INTEGER},
       comment_count = #{commentCount,jdbcType=INTEGER},
       view_count = #{viewCount,jdbcType=INTEGER},
       tag = #{tag,jdbcType=VARCHAR},
       gmt_create = #{gmtCreate,jdbcType=BIGINT},
       gmt_modified = #{gmtModified,jdbcType=BIGINT}
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
   </update>
   <select id="selectByExampleWithBLOBsWithRowbounds" parameterType="codingforlove.community.Model.QuestionExample" resultMap="ResultMapWithBLOBs">
     select

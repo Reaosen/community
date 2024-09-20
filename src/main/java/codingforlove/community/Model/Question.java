@@ -1,11 +1,11 @@
 package codingforlove.community.Model;
 
 public class Question {
-    private Integer id;
+    private Long id;
 
     private String title;
 
-    private Integer creatorAccountId;
+    private Long creatorAccountId;
 
     private Integer likeCount;
 
@@ -21,11 +21,11 @@ public class Question {
 
     private String description;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -37,11 +37,11 @@ public class Question {
         this.title = title;
     }
 
-    public Integer getCreatorAccountId() {
+    public Long getCreatorAccountId() {
         return creatorAccountId;
     }
 
-    public void setCreatorAccountId(Integer creatorAccountId) {
+    public void setCreatorAccountId(Long creatorAccountId) {
         this.creatorAccountId = creatorAccountId;
     }
 

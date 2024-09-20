@@ -7,10 +7,10 @@ import java.time.LocalDateTime;
 
 @Data
 public class QuestionDTO {
-    private Integer id;
+    private Long id;
     private String title;
     private String description;
-    private Integer creatorAccountId;
+    private Long creatorAccountId;
     private Integer likeCount;
     private Integer commentCount;
     private Integer viewCount;

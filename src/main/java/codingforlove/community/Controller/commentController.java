@@ -1,9 +1,12 @@
 package codingforlove.community.Controller;
 
 import codingforlove.community.DTO.CommentDTO;
-import codingforlove.community.Mapper.CommentMapper;
+import codingforlove.community.DTO.ResultDTO;
+import codingforlove.community.Exception.CustomizeErrorCode;
 import codingforlove.community.Model.Comment;
+import codingforlove.community.Model.User;
 import codingforlove.community.Service.CommentService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,8 +21,14 @@ public class commentController {
 
     @ResponseBody
     @RequestMapping(value = "/comment", method = RequestMethod.POST)
-    public Object post(@RequestBody CommentDTO commentDTO){
-        commentService.insert(commentDTO);
-        return null;
+    public Object post(@RequestBody CommentDTO commentDTO,
+                       HttpServletRequest request){
+        User user = (User) request.getSession().getAttribute("user");
+        if (user == null){
+            return ResultDTO.errorOf(CustomizeErrorCode.NO_LOGIN);
+        }
+        Comment comment = commentService.getComment(commentDTO, request);
+        commentService.insert(comment);
+        return ResultDTO.okOf();
     }
 }
