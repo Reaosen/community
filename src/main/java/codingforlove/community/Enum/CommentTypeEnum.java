@@ -3,8 +3,9 @@ package codingforlove.community.Enum;
 import java.util.Objects;
 
 public enum CommentTypeEnum {
-    COMMENT(1),
-    QUESTION(2);
+
+    QUESTION(1),
+    COMMENT(2);
 
     private Integer type;
 
