@@ -1,5 +1,6 @@
 package codingforlove.community.Controller;
 
+import codingforlove.community.DTO.ResultDTO;
 import codingforlove.community.Service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

@@ -36,7 +36,7 @@
                         编辑
                     </button>
                 </a>
-                <!--            todo 需要前端发送delete请求-->
+<!--            todo 需要前端发送delete请求-->
                 <button type="button" class="btn btn-outline-danger" th:value="${question.id}" id="delete_id" onclick="deleteQuestion()"
                         th:if="${session.user != null && session.user.getAccountId() == question.creatorAccountId}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -49,6 +49,7 @@
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="comment_section">
                 <hr>
+<!--            todo 回复展示的用户数据不对,应是登录用户,现在为问题发起用户-->
                 <div class="d-flex position-relative">
                     <img th:src="${question.user.avatarUrl}"
                          class="question-img flex-shrink-0 me-3 rounded float-start">
