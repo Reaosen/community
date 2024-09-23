@@ -1,6 +1,7 @@
 package codingforlove.community.Service;
 
 import codingforlove.community.DTO.PaginationDTO;
+import codingforlove.community.DTO.QuestionDTO;
 import org.springframework.ui.Model;
 
 public interface QuestionService {
@@ -8,9 +9,9 @@ public interface QuestionService {
 
     PaginationDTO list(Long id, Integer page, Integer size);
 
-    String getById(Long id, Model model);
+    QuestionDTO getById(Long id);
 
     void incView(Long id);
 
-    String deleteById(Long id);
+    void deleteById(Long id);
 }

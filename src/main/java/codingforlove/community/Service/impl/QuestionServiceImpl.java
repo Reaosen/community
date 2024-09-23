@@ -95,7 +95,7 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public String  getById(Long id, Model model) {
+    public QuestionDTO getById(Long id) {
         Question question = questionMapper.selectByPrimaryKey(id);
         if (question == null){
             throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
@@ -107,10 +107,9 @@ public class QuestionServiceImpl implements QuestionService {
                 .andAccountIdEqualTo(Long.valueOf(question.getCreatorAccountId()));
         List<User> users = userMapper.selectByExample(userExample);
         questionDTO.setUser(users.get(0));
-        model.addAttribute("question", questionDTO);
         //阅读数+1
         incView(id);
-        return "question";
+        return questionDTO;
     }
 
     @Override
@@ -122,11 +121,10 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public String deleteById(Long id) {
+    public void deleteById(Long id) {
         int deleteByPrimaryKey = questionMapper.deleteByPrimaryKey(id);
         if (deleteByPrimaryKey != 1){
             throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
         }
-        return "redirect:/";
     }
 }

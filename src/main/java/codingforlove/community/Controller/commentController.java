@@ -1,6 +1,6 @@
 package codingforlove.community.Controller;
 
-import codingforlove.community.DTO.CommentDTO;
+import codingforlove.community.DTO.CommentCreateDTO;
 import codingforlove.community.DTO.ResultDTO;
 import codingforlove.community.Exception.CustomizeErrorCode;
 import codingforlove.community.Model.Comment;
@@ -21,7 +21,7 @@ public class commentController {
 
     @ResponseBody
     @RequestMapping(value = "/comment", method = RequestMethod.POST)
-    public Object post(@RequestBody CommentDTO commentDTO,
+    public Object post(@RequestBody CommentCreateDTO commentDTO,
                        HttpServletRequest request){
         User user = (User) request.getSession().getAttribute("user");
         if (user == null){
