@@ -17,8 +17,8 @@
 <div th:insert="~{navigation :: nav}"></div>
 <div class="container-fluid main">
     <div class="row">
-        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12" style="padding-top: 10px">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: 15px">
                 <h3 style="margin-top: 15px"><span th:text="${question.title}"></span></h3>
                 <span class="question-text-desc">
                 标签：[[${question.tag}]] | 作者 [[${question.user.name}]] | [[${#dates.format(question.gmtCreate, 'yyyy-MM-dd HH:mm:ss')}]] | 阅读数：[[${question.viewCount}]]
@@ -81,6 +81,7 @@
             </div>
             <!--            回复框-->
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="comment_section">
+                <h3><span>提交回复</span></h3>
                 <hr>
                 <!--            todo 回复展示的用户数据不对,应是登录用户,现在为问题发起用户-->
                 <div class="d-flex position-relative">
@@ -92,7 +93,7 @@
                     </div>
                 </div>
                 <input type="hidden" id="question_id" th:value="${question.id}">
-                <textarea class="form-control" id="comment_content" rows="6" style="margin: 10px 0"></textarea>
+                <textarea class="form-control" id="comment_content" rows="6" tyle="margin: 10px 0"></textarea>
                 <button type="button" class="btn btn-success" style="float: right;margin-bottom: 10px" onclick="post()">
                     回复
                 </button>

@@ -1,6 +1,11 @@
 function post() {
     var questionId = $("#question_id").val();
     var commentContent = $("#comment_content").val()
+
+    if (!commentContent){
+        alert("回复内容不能为空哦~");
+        return;
+    }
     $.ajax({
         type: "POST",
         url: "/comment",

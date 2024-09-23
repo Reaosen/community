@@ -1,5 +1,7 @@
 package codingforlove.community.Controller;
 
+import cn.hutool.Hutool;
+import cn.hutool.core.util.StrUtil;
 import codingforlove.community.DTO.CommentCreateDTO;
 import codingforlove.community.DTO.ResultDTO;
 import codingforlove.community.Exception.CustomizeErrorCode;
@@ -15,19 +17,22 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-public class commentController {
+public class CommentController {
     @Autowired
     private CommentService commentService;
 
     @ResponseBody
     @RequestMapping(value = "/comment", method = RequestMethod.POST)
-    public Object post(@RequestBody CommentCreateDTO commentDTO,
+    public Object post(@RequestBody CommentCreateDTO commentCreateDTO,
                        HttpServletRequest request){
         User user = (User) request.getSession().getAttribute("user");
         if (user == null){
             return ResultDTO.errorOf(CustomizeErrorCode.NO_LOGIN);
         }
-        Comment comment = commentService.getComment(commentDTO, request);
+        if (commentCreateDTO == null || StrUtil.isBlank(commentCreateDTO.getContent())){
+            return ResultDTO.errorOf(CustomizeErrorCode.CONTENT_IS_EMPTY);
+        }
+        Comment comment = commentService.getComment(commentCreateDTO, request);
         commentService.insert(comment);
         return ResultDTO.okOf();
     }
