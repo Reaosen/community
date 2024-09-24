@@ -414,66 +414,6 @@ public class CommentExample {
             return (Criteria) this;
         }
 
-        public Criteria andGmtCreateIsNull() {
-            addCriterion("gmt_create is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andGmtCreateIsNotNull() {
-            addCriterion("gmt_create is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andGmtCreateEqualTo(Long value) {
-            addCriterion("gmt_create =", value, "gmtCreate");
-            return (Criteria) this;
-        }
-
-        public Criteria andGmtCreateNotEqualTo(Long value) {
-            addCriterion("gmt_create <>", value, "gmtCreate");
-            return (Criteria) this;
-        }
-
-        public Criteria andGmtCreateGreaterThan(Long value) {
-            addCriterion("gmt_create >", value, "gmtCreate");
-            return (Criteria) this;
-        }
-
-        public Criteria andGmtCreateGreaterThanOrEqualTo(Long value) {
-            addCriterion("gmt_create >=", value, "gmtCreate");
-            return (Criteria) this;
-        }
-
-        public Criteria andGmtCreateLessThan(Long value) {
-            addCriterion("gmt_create <", value, "gmtCreate");
-            return (Criteria) this;
-        }
-
-        public Criteria andGmtCreateLessThanOrEqualTo(Long value) {
-            addCriterion("gmt_create <=", value, "gmtCreate");
-            return (Criteria) this;
-        }
-
-        public Criteria andGmtCreateIn(List<Long> values) {
-            addCriterion("gmt_create in", values, "gmtCreate");
-            return (Criteria) this;
-        }
-
-        public Criteria andGmtCreateNotIn(List<Long> values) {
-            addCriterion("gmt_create not in", values, "gmtCreate");
-            return (Criteria) this;
-        }
-
-        public Criteria andGmtCreateBetween(Long value1, Long value2) {
-            addCriterion("gmt_create between", value1, value2, "gmtCreate");
-            return (Criteria) this;
-        }
-
-        public Criteria andGmtCreateNotBetween(Long value1, Long value2) {
-            addCriterion("gmt_create not between", value1, value2, "gmtCreate");
-            return (Criteria) this;
-        }
-
         public Criteria andLikeCountIsNull() {
             addCriterion("like_count is null");
             return (Criteria) this;
@@ -534,6 +474,66 @@ public class CommentExample {
             return (Criteria) this;
         }
 
+        public Criteria andCommentCountIsNull() {
+            addCriterion("comment_count is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentCountIsNotNull() {
+            addCriterion("comment_count is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentCountEqualTo(Long value) {
+            addCriterion("comment_count =", value, "commentCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentCountNotEqualTo(Long value) {
+            addCriterion("comment_count <>", value, "commentCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentCountGreaterThan(Long value) {
+            addCriterion("comment_count >", value, "commentCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentCountGreaterThanOrEqualTo(Long value) {
+            addCriterion("comment_count >=", value, "commentCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentCountLessThan(Long value) {
+            addCriterion("comment_count <", value, "commentCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentCountLessThanOrEqualTo(Long value) {
+            addCriterion("comment_count <=", value, "commentCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentCountIn(List<Long> values) {
+            addCriterion("comment_count in", values, "commentCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentCountNotIn(List<Long> values) {
+            addCriterion("comment_count not in", values, "commentCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentCountBetween(Long value1, Long value2) {
+            addCriterion("comment_count between", value1, value2, "commentCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentCountNotBetween(Long value1, Long value2) {
+            addCriterion("comment_count not between", value1, value2, "commentCount");
+            return (Criteria) this;
+        }
+
         public Criteria andGmtModifiedIsNull() {
             addCriterion("gmt_modified is null");
             return (Criteria) this;
@@ -591,6 +591,66 @@ public class CommentExample {
 
         public Criteria andGmtModifiedNotBetween(Long value1, Long value2) {
             addCriterion("gmt_modified not between", value1, value2, "gmtModified");
+            return (Criteria) this;
+        }
+
+        public Criteria andGmtCreateIsNull() {
+            addCriterion("gmt_create is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGmtCreateIsNotNull() {
+            addCriterion("gmt_create is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGmtCreateEqualTo(Long value) {
+            addCriterion("gmt_create =", value, "gmtCreate");
+            return (Criteria) this;
+        }
+
+        public Criteria andGmtCreateNotEqualTo(Long value) {
+            addCriterion("gmt_create <>", value, "gmtCreate");
+            return (Criteria) this;
+        }
+
+        public Criteria andGmtCreateGreaterThan(Long value) {
+            addCriterion("gmt_create >", value, "gmtCreate");
+            return (Criteria) this;
+        }
+
+        public Criteria andGmtCreateGreaterThanOrEqualTo(Long value) {
+            addCriterion("gmt_create >=", value, "gmtCreate");
+            return (Criteria) this;
+        }
+
+        public Criteria andGmtCreateLessThan(Long value) {
+            addCriterion("gmt_create <", value, "gmtCreate");
+            return (Criteria) this;
+        }
+
+        public Criteria andGmtCreateLessThanOrEqualTo(Long value) {
+            addCriterion("gmt_create <=", value, "gmtCreate");
+            return (Criteria) this;
+        }
+
+        public Criteria andGmtCreateIn(List<Long> values) {
+            addCriterion("gmt_create in", values, "gmtCreate");
+            return (Criteria) this;
+        }
+
+        public Criteria andGmtCreateNotIn(List<Long> values) {
+            addCriterion("gmt_create not in", values, "gmtCreate");
+            return (Criteria) this;
+        }
+
+        public Criteria andGmtCreateBetween(Long value1, Long value2) {
+            addCriterion("gmt_create between", value1, value2, "gmtCreate");
+            return (Criteria) this;
+        }
+
+        public Criteria andGmtCreateNotBetween(Long value1, Long value2) {
+            addCriterion("gmt_create not between", value1, value2, "gmtCreate");
             return (Criteria) this;
         }
     }

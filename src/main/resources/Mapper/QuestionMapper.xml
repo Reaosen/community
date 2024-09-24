@@ -5,9 +5,9 @@
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="title" jdbcType="VARCHAR" property="title" />
     <result column="creator_account_id" jdbcType="BIGINT" property="creatorAccountId" />
-    <result column="like_count" jdbcType="INTEGER" property="likeCount" />
-    <result column="comment_count" jdbcType="INTEGER" property="commentCount" />
-    <result column="view_count" jdbcType="INTEGER" property="viewCount" />
+    <result column="like_count" jdbcType="BIGINT" property="likeCount" />
+    <result column="comment_count" jdbcType="BIGINT" property="commentCount" />
+    <result column="view_count" jdbcType="BIGINT" property="viewCount" />
     <result column="tag" jdbcType="VARCHAR" property="tag" />
     <result column="gmt_create" jdbcType="BIGINT" property="gmtCreate" />
     <result column="gmt_modified" jdbcType="BIGINT" property="gmtModified" />
@@ -134,7 +134,7 @@
       tag, gmt_create, gmt_modified, 
       description)
     values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{creatorAccountId,jdbcType=BIGINT}, 
-      #{likeCount,jdbcType=INTEGER}, #{commentCount,jdbcType=INTEGER}, #{viewCount,jdbcType=INTEGER}, 
+      #{likeCount,jdbcType=BIGINT}, #{commentCount,jdbcType=BIGINT}, #{viewCount,jdbcType=BIGINT}, 
       #{tag,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=BIGINT}, #{gmtModified,jdbcType=BIGINT}, 
       #{description,jdbcType=LONGVARCHAR})
   </insert>
@@ -183,13 +183,13 @@
         #{creatorAccountId,jdbcType=BIGINT},
       </if>
       <if test="likeCount != null">
-        #{likeCount,jdbcType=INTEGER},
+        #{likeCount,jdbcType=BIGINT},
       </if>
       <if test="commentCount != null">
-        #{commentCount,jdbcType=INTEGER},
+        #{commentCount,jdbcType=BIGINT},
       </if>
       <if test="viewCount != null">
-        #{viewCount,jdbcType=INTEGER},
+        #{viewCount,jdbcType=BIGINT},
       </if>
       <if test="tag != null">
         #{tag,jdbcType=VARCHAR},
@@ -224,13 +224,13 @@
         creator_account_id = #{record.creatorAccountId,jdbcType=BIGINT},
       </if>
       <if test="record.likeCount != null">
-        like_count = #{record.likeCount,jdbcType=INTEGER},
+        like_count = #{record.likeCount,jdbcType=BIGINT},
       </if>
       <if test="record.commentCount != null">
-        comment_count = #{record.commentCount,jdbcType=INTEGER},
+        comment_count = #{record.commentCount,jdbcType=BIGINT},
       </if>
       <if test="record.viewCount != null">
-        view_count = #{record.viewCount,jdbcType=INTEGER},
+        view_count = #{record.viewCount,jdbcType=BIGINT},
       </if>
       <if test="record.tag != null">
         tag = #{record.tag,jdbcType=VARCHAR},
@@ -254,9 +254,9 @@
     set id = #{record.id,jdbcType=BIGINT},
       title = #{record.title,jdbcType=VARCHAR},
       creator_account_id = #{record.creatorAccountId,jdbcType=BIGINT},
-      like_count = #{record.likeCount,jdbcType=INTEGER},
-      comment_count = #{record.commentCount,jdbcType=INTEGER},
-      view_count = #{record.viewCount,jdbcType=INTEGER},
+      like_count = #{record.likeCount,jdbcType=BIGINT},
+      comment_count = #{record.commentCount,jdbcType=BIGINT},
+      view_count = #{record.viewCount,jdbcType=BIGINT},
       tag = #{record.tag,jdbcType=VARCHAR},
       gmt_create = #{record.gmtCreate,jdbcType=BIGINT},
       gmt_modified = #{record.gmtModified,jdbcType=BIGINT},
@@ -270,9 +270,9 @@
     set id = #{record.id,jdbcType=BIGINT},
       title = #{record.title,jdbcType=VARCHAR},
       creator_account_id = #{record.creatorAccountId,jdbcType=BIGINT},
-      like_count = #{record.likeCount,jdbcType=INTEGER},
-      comment_count = #{record.commentCount,jdbcType=INTEGER},
-      view_count = #{record.viewCount,jdbcType=INTEGER},
+      like_count = #{record.likeCount,jdbcType=BIGINT},
+      comment_count = #{record.commentCount,jdbcType=BIGINT},
+      view_count = #{record.viewCount,jdbcType=BIGINT},
       tag = #{record.tag,jdbcType=VARCHAR},
       gmt_create = #{record.gmtCreate,jdbcType=BIGINT},
       gmt_modified = #{record.gmtModified,jdbcType=BIGINT}
@@ -290,13 +290,13 @@
         creator_account_id = #{creatorAccountId,jdbcType=BIGINT},
       </if>
       <if test="likeCount != null">
-        like_count = #{likeCount,jdbcType=INTEGER},
+        like_count = #{likeCount,jdbcType=BIGINT},
       </if>
       <if test="commentCount != null">
-        comment_count = #{commentCount,jdbcType=INTEGER},
+        comment_count = #{commentCount,jdbcType=BIGINT},
       </if>
       <if test="viewCount != null">
-        view_count = #{viewCount,jdbcType=INTEGER},
+        view_count = #{viewCount,jdbcType=BIGINT},
       </if>
       <if test="tag != null">
         tag = #{tag,jdbcType=VARCHAR},
@@ -317,9 +317,9 @@
     update question
     set title = #{title,jdbcType=VARCHAR},
       creator_account_id = #{creatorAccountId,jdbcType=BIGINT},
-      like_count = #{likeCount,jdbcType=INTEGER},
-      comment_count = #{commentCount,jdbcType=INTEGER},
-      view_count = #{viewCount,jdbcType=INTEGER},
+      like_count = #{likeCount,jdbcType=BIGINT},
+      comment_count = #{commentCount,jdbcType=BIGINT},
+      view_count = #{viewCount,jdbcType=BIGINT},
       tag = #{tag,jdbcType=VARCHAR},
       gmt_create = #{gmtCreate,jdbcType=BIGINT},
       gmt_modified = #{gmtModified,jdbcType=BIGINT},
@@ -330,9 +330,9 @@
     update question
     set title = #{title,jdbcType=VARCHAR},
       creator_account_id = #{creatorAccountId,jdbcType=BIGINT},
-      like_count = #{likeCount,jdbcType=INTEGER},
-      comment_count = #{commentCount,jdbcType=INTEGER},
-      view_count = #{viewCount,jdbcType=INTEGER},
+      like_count = #{likeCount,jdbcType=BIGINT},
+      comment_count = #{commentCount,jdbcType=BIGINT},
+      view_count = #{viewCount,jdbcType=BIGINT},
       tag = #{tag,jdbcType=VARCHAR},
       gmt_create = #{gmtCreate,jdbcType=BIGINT},
       gmt_modified = #{gmtModified,jdbcType=BIGINT}

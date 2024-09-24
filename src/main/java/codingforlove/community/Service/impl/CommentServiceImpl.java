@@ -5,10 +5,7 @@ import codingforlove.community.DTO.CommentDTO;
 import codingforlove.community.Enum.CommentTypeEnum;
 import codingforlove.community.Exception.CustomizeErrorCode;
 import codingforlove.community.Exception.CustomizeException;
-import codingforlove.community.Mapper.CommentMapper;
-import codingforlove.community.Mapper.QuestionExtMapper;
-import codingforlove.community.Mapper.QuestionMapper;
-import codingforlove.community.Mapper.UserMapper;
+import codingforlove.community.Mapper.*;
 import codingforlove.community.Model.*;
 import codingforlove.community.Service.CommentService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -24,6 +21,8 @@ import java.util.stream.Collectors;
 public class CommentServiceImpl implements CommentService {
     @Autowired
     private CommentMapper commentMapper;
+    @Autowired
+    private CommentExtMapper commentExtMapper;
     @Autowired
     private QuestionMapper questionMapper;
     @Autowired
@@ -63,6 +62,8 @@ public class CommentServiceImpl implements CommentService {
                 throw new CustomizeException(CustomizeErrorCode.COMMENT_NOT_FOUND);
             }else {
                 commentMapper.insert(comment);
+                dbComment.setCommentCount(1L);
+                commentExtMapper.incCommentCount(dbComment);
             }
         }else {
             Question question = questionMapper.selectByPrimaryKey(comment.getParentId());
@@ -70,7 +71,7 @@ public class CommentServiceImpl implements CommentService {
                 throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
             }else {
                 commentMapper.insert(comment);
-                question.setCommentCount(1);
+                question.setCommentCount(1L);
                 questionExtMapper.incCommentCount(question);
             }
         }

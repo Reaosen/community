@@ -118,7 +118,7 @@ public class QuestionServiceImpl implements QuestionService {
     public void incView(Long id) {
         Question record = new Question();
         record.setId(id);
-        record.setViewCount(1);
+        record.setViewCount(1L);
         questionExtMapper.incView(record);
     }
 

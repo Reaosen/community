@@ -54,3 +54,8 @@ body {
     border: 1px solid #eee;
     padding-top: 15px;
 }
+.comment-userName{
+    font-size: 20px;
+    text-decoration: none;
+    color: #8bb9fe;
+}

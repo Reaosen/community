@@ -7,11 +7,11 @@ public class Question {
 
     private Long creatorAccountId;
 
-    private Integer likeCount;
+    private Long likeCount;
 
-    private Integer commentCount;
+    private Long commentCount;
 
-    private Integer viewCount;
+    private Long viewCount;
 
     private String tag;
 
@@ -45,27 +45,27 @@ public class Question {
         this.creatorAccountId = creatorAccountId;
     }
 
-    public Integer getLikeCount() {
+    public Long getLikeCount() {
         return likeCount;
     }
 
-    public void setLikeCount(Integer likeCount) {
+    public void setLikeCount(Long likeCount) {
         this.likeCount = likeCount;
     }
 
-    public Integer getCommentCount() {
+    public Long getCommentCount() {
         return commentCount;
     }
 
-    public void setCommentCount(Integer commentCount) {
+    public void setCommentCount(Long commentCount) {
         this.commentCount = commentCount;
     }
 
-    public Integer getViewCount() {
+    public Long getViewCount() {
         return viewCount;
     }
 
-    public void setViewCount(Integer viewCount) {
+    public void setViewCount(Long viewCount) {
         this.viewCount = viewCount;
     }
 

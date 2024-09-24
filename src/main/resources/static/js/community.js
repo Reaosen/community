@@ -2,7 +2,7 @@
  *  提交回复
  */
 
-function comment2target(targetId, type, content){
+function comment2target(targetId, type, content) {
 
     if (!content) {
         alert("回复内容不能为空哦~");
@@ -45,12 +45,11 @@ function post() {
     comment2target(questionId, 1, commentContent);
 }
 
-function comment(e){
+function comment(e) {
     var commentId = e.getAttribute("data-id");
     var content = $('#input-' + commentId).val();
     comment2target(commentId, 2, content);
 }
-
 
 
 /**
@@ -69,6 +68,7 @@ function deleteQuestion() {
         }
     });
 }
+
 /**
  *  展开二级评论
  */
@@ -78,26 +78,46 @@ function collapseComments(e) {
     comments.toggleClass("show");
     if (comments.hasClass("show")) {
         e.classList.add("active");
-        $.getJSON( "/comment/" + id, function( data ) {
-            // var commentBody = $('comment-body-' + id);
-            // var items = [];
-            //
-            // $.each( data.data, function(comment) {
-            //     $("<div/>",{
-            //         "class":"d-flex position-relative comments",
-            //         "id":'comment-' + id,
-            //         html: items.join("")
-            //     }).appendTo(commentBody);
-            //
-            //     items.push( "<li id='" + key + "'>" + val + "</li>" );
-            // });
-            // $("<div/>",{
-            //     "class":"col-lg-12 col-md-12 col-sm-12 col-xs-12 accordion-collapse sub-comments collapse",
-            //     "id":'comment-' + id,
-            //     html: items.join("")
-            // }).appendTo(commentBody);
+        var subCommentContainer = $("#comment-" + id);
+        if (subCommentContainer.children().length != 1) {
+            return;
+        }
+        $.getJSON("/comment/" + id, function (data) {
+            $.each(data.data.reverse(), function (index, comment) {
+
+                var timeElement = $("<div/>", {
+                    "class": "pull-right",
+                    "html": moment(comment.gmtCreate).format("YYYY-MM-DD HH:mm:ss")
+                });
+                var menuElement = $("<div/>", {
+                    "class": "menu"
+                });
+                var contentElement = $("<div/>", {
+                    "html": comment.content
+                });
+                var userNameElement = $("<a/>", {
+                    "class": "comment-userName",
+                    "html": comment.user.name
+                });
+                var mediaElement = $("<div/>", {
+                });
+                var avatarElement = $("<img/>", {
+                    "class": "comment-img flex-shrink-0 me-3 rounded float-start",
+                    "src": comment.user.avatarUrl
+                });
+                var commentElement = $("<div/>", {
+                    "class": "d-flex position-relative comments",
+                });
+                menuElement.append(timeElement);
+                mediaElement.append(userNameElement)
+                    .append(contentElement)
+                    .append(menuElement);
+                commentElement.append(avatarElement)
+                    .append(mediaElement);
+                subCommentContainer.prepend(commentElement);
+            });
         });
-    }else {
+    } else {
         e.classList.remove("active");
     }
 

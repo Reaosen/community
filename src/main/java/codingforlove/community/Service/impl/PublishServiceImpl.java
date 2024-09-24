@@ -56,9 +56,9 @@ public class PublishServiceImpl implements PublishService {
         question.setDescription(description);
         question.setTag(tag);
         question.setId(id);
-        question.setViewCount(0);
-        question.setCommentCount(0);
-        question.setLikeCount(0);
+        question.setViewCount(0L);
+        question.setCommentCount(0L);
+        question.setLikeCount(0L);
 
         if (question.getId() == null){
             question.setGmtCreate(System.currentTimeMillis());

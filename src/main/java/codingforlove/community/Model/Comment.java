@@ -11,11 +11,13 @@ public class Comment {
 
     private String content;
 
-    private Long gmtCreate;
-
     private Long likeCount;
 
+    private Long commentCount;
+
     private Long gmtModified;
+
+    private Long gmtCreate;
 
     public Long getId() {
         return id;
@@ -57,14 +59,6 @@ public class Comment {
         this.content = content;
     }
 
-    public Long getGmtCreate() {
-        return gmtCreate;
-    }
-
-    public void setGmtCreate(Long gmtCreate) {
-        this.gmtCreate = gmtCreate;
-    }
-
     public Long getLikeCount() {
         return likeCount;
     }
@@ -73,11 +67,27 @@ public class Comment {
         this.likeCount = likeCount;
     }
 
+    public Long getCommentCount() {
+        return commentCount;
+    }
+
+    public void setCommentCount(Long commentCount) {
+        this.commentCount = commentCount;
+    }
+
     public Long getGmtModified() {
         return gmtModified;
     }
 
     public void setGmtModified(Long gmtModified) {
         this.gmtModified = gmtModified;
+    }
+
+    public Long getGmtCreate() {
+        return gmtCreate;
+    }
+
+    public void setGmtCreate(Long gmtCreate) {
+        this.gmtCreate = gmtCreate;
     }
 }
