@@ -2,6 +2,7 @@ package codingforlove.community.Service;
 
 import codingforlove.community.DTO.CommentCreateDTO;
 import codingforlove.community.DTO.CommentDTO;
+import codingforlove.community.Enum.CommentTypeEnum;
 import codingforlove.community.Model.Comment;
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -12,5 +13,5 @@ public interface CommentService {
 
     void insert(Comment comment);
 
-    List<CommentDTO> listByQuestionId(Long id);
+    List<CommentDTO> listByIdAndType(Long id, CommentTypeEnum type);
 }

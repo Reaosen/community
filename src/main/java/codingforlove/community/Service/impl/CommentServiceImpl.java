@@ -77,12 +77,12 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public List<CommentDTO> listByQuestionId(Long id) {
+    public List<CommentDTO> listByIdAndType(Long id, CommentTypeEnum type) {
         //todo 没搞懂，学完java8和stream再来看看
         CommentExample commentExample = new CommentExample();
         commentExample.createCriteria()
                         .andParentIdEqualTo(id)
-                        .andTypeEqualTo(CommentTypeEnum.QUESTION.getType());
+                        .andTypeEqualTo(type.getType());
         commentExample.setOrderByClause("gmt_create desc");
         List<Comment> comments = commentMapper.selectByExample(commentExample);
         if (comments.size() == 0){
