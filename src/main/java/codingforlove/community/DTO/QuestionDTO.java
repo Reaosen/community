@@ -11,9 +11,9 @@ public class QuestionDTO {
     private String title;
     private String description;
     private Long creatorAccountId;
-    private Integer likeCount;
-    private Integer commentCount;
-    private Integer viewCount;
+    private Long likeCount;
+    private Long commentCount;
+    private Long viewCount;
     private String tag;
     private User user;
     private Long gmtModified;

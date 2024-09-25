@@ -49,7 +49,7 @@ public class PublishServiceImpl implements PublishService {
             model.addAttribute("error", "用户未登录");
             return "publish";
         }
-
+        //todo 目前tag是一整个字符串，在前端分割。需要新建表，并在后端转换成数组
         Question question = new Question();
         question.setCreatorAccountId(user.getAccountId());
         question.setTitle(title);

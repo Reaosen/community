@@ -36,6 +36,7 @@ function comment2target(targetId, type, content) {
         },
         dataType: "json"
     });
+    location.reload();
 }
 
 function post() {
