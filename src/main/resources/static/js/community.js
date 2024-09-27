@@ -123,3 +123,14 @@ function collapseComments(e) {
     }
 
 }
+function selectTag(value){
+    var previous = $("#tag").val();
+    //todo 用indexOf存在混淆问题：spring和springboot被判定为重复
+    if (previous.indexOf(value) == -1){
+        if (previous){
+            $("#tag").val(previous + '，' + value);
+        }else {
+            $("#tag").val(value);
+        }
+    }
+}
