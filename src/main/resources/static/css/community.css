@@ -59,3 +59,14 @@ body {
     text-decoration: none;
     color: #8bb9fe;
 }
+
+.question-related{
+    font-size: 18px;
+    list-style: none;
+    line-height: 35px;
+}
+
+.question-related-a{
+    text-decoration: none;
+    color: #8BB9FE;
+}

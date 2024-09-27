@@ -17,6 +17,7 @@
 <div th:insert="~{navigation :: nav}"></div>
 <div class="container-fluid main">
     <div class="row">
+        <!--右侧主要内容-->
         <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12" style="padding-top: 10px">
             <!--正文-->
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: 15px">
@@ -27,7 +28,8 @@
                 <hr>
                 <p th:text="${question.description}"></p>
                 <hr style="margin-bottom: 5px">
-                <span class="badge text-bg-secondary" th:each="tag : ${question.tag.split('，')}" style="margin-right: 5px">
+                <span class="badge text-bg-secondary" th:each="tag : ${question.tag.split('，')}"
+                      style="margin-right: 5px">
                     <span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                          class="bi bi-tags" viewBox="0 0 16 16">
@@ -128,9 +130,11 @@
                 </button>
             </div>
         </div>
+        <!--右侧信息-->
         <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+            <!--发起人-->
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <h4>发起人</h4>
+                <h4 style="margin-top: 25px">发起人</h4>
                 <div class="d-flex position-relative">
                     <img th:src="${question.user.avatarUrl}"
                          class="question-img flex-shrink-0 me-3 rounded float-start">
@@ -142,9 +146,21 @@
                 </div>
                 <hr>
             </div>
+            <!--相关问题-->
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <h4>相关问题</h4>
                 <hr>
+                <ul style="list-style: none">
+                    <li th:each="relatedQuestion : ${relatedQuestions}" class="question-related">
+                        <a th:href="@{'/question/' + ${relatedQuestion.id}}" th:text="${relatedQuestion.title}"
+                           class="question-related-a"></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <h4>站长卫星</h4>
+                <hr>
+                <img src="/img/wechat.jpg" alt="weChatQR" style="width: 70%">
             </div>
         </div>
     </div>

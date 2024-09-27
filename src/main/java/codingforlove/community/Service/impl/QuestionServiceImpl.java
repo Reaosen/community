@@ -1,5 +1,6 @@
 package codingforlove.community.Service.impl;
 
+import cn.hutool.core.util.StrUtil;
 import codingforlove.community.DTO.QuestionDTO;
 import codingforlove.community.DTO.PaginationDTO;
 import codingforlove.community.Exception.CustomizeErrorCode;
@@ -20,6 +21,7 @@ import org.springframework.ui.Model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class QuestionServiceImpl implements QuestionService {
@@ -128,5 +130,25 @@ public class QuestionServiceImpl implements QuestionService {
         if (deleteByPrimaryKey != 1){
             throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
         }
+    }
+
+    @Override
+    public List<QuestionDTO> selectRelated(QuestionDTO queryDTO) {
+        if (StrUtil.isBlank(queryDTO.getTag())){
+            return new ArrayList<>();
+        }
+        String regexp = queryDTO.getTag().replace("，", "|");
+        Question question = new Question();
+        question.setId(queryDTO.getId());
+        question.setTag(regexp);
+
+        List<Question> questions = questionExtMapper.selectRelated(question);
+        List<QuestionDTO> questionDTOS = questions.stream().map(q -> {
+            QuestionDTO questionDTO = new QuestionDTO();
+            BeanUtils.copyProperties(q, questionDTO);
+            return questionDTO;
+        }).collect(Collectors.toList());
+
+        return questionDTOS;
     }
 }
