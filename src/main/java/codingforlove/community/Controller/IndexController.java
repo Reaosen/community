@@ -1,5 +1,6 @@
 package codingforlove.community.Controller;
 
+import codingforlove.community.DTO.PaginationDTO;
 import codingforlove.community.Service.IndexService;
 import codingforlove.community.Service.QuestionService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -22,7 +23,9 @@ public class IndexController {
                         @RequestParam(name = "page", defaultValue = "1") Integer page,
                         @RequestParam(name = "size", defaultValue = "5") Integer size) {
 
-        return indexService.login(request, model, page, size);
+        PaginationDTO paginationDTO = indexService.login(request, page, size);
+        model.addAttribute("pagination", paginationDTO);
+        return "index";
 
     }
 }

@@ -16,35 +16,13 @@ public class ProfileServiceImpl implements ProfileService {
     private QuestionService questionService;
 
     @Override
-    public String profile(HttpServletRequest request,
-                          String action,
-                          Model model,
-                          @RequestParam(name = "page", defaultValue = "1") Integer page,
-                          @RequestParam(name = "size", defaultValue = "5") Integer size) {
-        User user = (User) request.getSession().getAttribute("user");
-        if (user == null){
-            //todo 未登录提醒
-            return "redirect:/";
-        }
-        request.getSession().setAttribute("user", user);
-        if (action.equals("questions")) {
-            model.addAttribute("section", "questions");
-            model.addAttribute("sectionName", "我的提问");
-        }
-        if (action.equals("replies")) {
-            model.addAttribute("section", "replies");
-            model.addAttribute("sectionName", "最新消息");
-        }
-        if (action.equals("stars")) {
-            model.addAttribute("section", "stars");
-            model.addAttribute("sectionName", "我的收藏");
-        }
-        if (action.equals("concerns")) {
-            model.addAttribute("section", "concerns");
-            model.addAttribute("sectionName", "我的关注");
-        }
+    public PaginationDTO profile(User user,
+                                 String action,
+                                 @RequestParam(name = "page", defaultValue = "1") Integer page,
+                                 @RequestParam(name = "size", defaultValue = "5") Integer size) {
+
         PaginationDTO paginationDTO = questionService.list(user.getAccountId(), page, size);
-        model.addAttribute("pagination", paginationDTO);
-        return "profile";
+
+        return paginationDTO;
     }
 }

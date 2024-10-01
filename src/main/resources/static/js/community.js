@@ -123,7 +123,8 @@ function collapseComments(e) {
     }
 
 }
-function selectTag(value){
+function selectTag(e){
+    let value = e.getAttribute("data-tag");
     var previous = $("#tag").val();
     //todo 用indexOf存在混淆问题：spring和springboot被判定为重复
     if (previous.indexOf(value) == -1){
@@ -133,4 +134,7 @@ function selectTag(value){
             $("#tag").val(value);
         }
     }
+}
+function showSelectTag(e){
+    $("#select-tag").show();
 }

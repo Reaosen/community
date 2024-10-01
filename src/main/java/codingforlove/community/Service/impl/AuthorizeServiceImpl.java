@@ -31,7 +31,7 @@ public class AuthorizeServiceImpl implements AuthorizeService {
     @Value("${gitee.grant.type}")
     private String grantType;
     @Override
-    public String giteeCallback(String code, HttpServletResponse response) {
+    public void giteeCallback(String code, HttpServletResponse response) {
         AccessTokenDTO accessTokenDTO = new AccessTokenDTO();
         accessTokenDTO.setCode(code);
         accessTokenDTO.setClient_id(clientId);
@@ -63,10 +63,7 @@ public class AuthorizeServiceImpl implements AuthorizeService {
             UserDTO userDTO = new UserDTO();
             BeanUtils.copyProperties(user, userDTO);
             response.addCookie(new Cookie("token", user.getToken()));
-            return "redirect:/";
-        }else {
-            //登录失败 重新登录
-            return "redirect:/";
+
         }
     }
 }

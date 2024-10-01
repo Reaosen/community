@@ -17,8 +17,8 @@ public class AuthorizeController {
     private AuthorizeService authorizeService;
     @GetMapping("/giteeCallback")
     public String giteeCallback(@RequestParam(name = "code") String code,
-                                HttpServletResponse response) {
-       return authorizeService.giteeCallback(code, response);
+        HttpServletResponse response) {authorizeService.giteeCallback(code, response);
+        return "redirect:/";
     }
     @GetMapping("/logout")
     public String logout(HttpServletRequest request,

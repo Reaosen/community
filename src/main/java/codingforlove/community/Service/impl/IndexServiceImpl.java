@@ -1,5 +1,6 @@
 package codingforlove.community.Service.impl;
 
+import codingforlove.community.DTO.PaginationDTO;
 import codingforlove.community.Mapper.UserMapper;
 import codingforlove.community.Service.IndexService;
 import codingforlove.community.Service.QuestionService;
@@ -16,9 +17,8 @@ public class IndexServiceImpl implements IndexService {
     private QuestionService questionService;
 
     @Override
-    public String login(HttpServletRequest request, Model model, Integer page, Integer size) {
+    public PaginationDTO login(HttpServletRequest request, Integer page, Integer size) {
         //TODO mysql数据库压力过大，可以换成redis
-        model.addAttribute("pagination", questionService.list(model, page, size));
-        return "index";
+        return questionService.list(page, size);
     }
 }

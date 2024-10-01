@@ -1,5 +1,6 @@
 package codingforlove.community.Service.impl;
 
+import codingforlove.community.Cache.TagCache;
 import codingforlove.community.Exception.CustomizeErrorCode;
 import codingforlove.community.Exception.CustomizeException;
 import codingforlove.community.Mapper.QuestionMapper;
@@ -21,34 +22,13 @@ public class PublishServiceImpl implements PublishService {
     @Autowired
     private QuestionMapper questionMapper;
     @Override
-    public String doPublish(@RequestParam("title") String title,
-                            @RequestParam("description") String description,
-                            @RequestParam("tag") String tag,
-                            @RequestParam(value = "id", required = false) Long id,
-                            Model model,
-                            HttpServletRequest request) {
-        model.addAttribute("title", title);
-        model.addAttribute("description", description);
-        model.addAttribute("tag", tag);
+    public void doPublish(@RequestParam("title") String title,
+                          @RequestParam("description") String description,
+                          @RequestParam("tag") String tag,
+                          @RequestParam(value = "id", required = false) Long id,
+                          User user) {
         // TODO 前端校验
-        if (title == null || title.equals("")){
-            model.addAttribute("error", "标题不能为空");
-            return "publish";
-        }
-        if (description == null || description.equals("")){
-            model.addAttribute("error", "问题补充不能为空");
-            return "publish";
-        }
-        if (tag == null || tag.equals("")){
-            model.addAttribute("error", "标签不能为空");
-            return "publish";
-        }
 
-        User user = (User) request.getSession().getAttribute("user");
-        if (user == null) {
-            model.addAttribute("error", "用户未登录");
-            return "publish";
-        }
         //todo 目前tag是一整个字符串，在前端分割。需要新建表，并在后端转换成数组
         Question question = new Question();
         question.setCreatorAccountId(user.getAccountId());
@@ -75,7 +55,7 @@ public class PublishServiceImpl implements PublishService {
             }
         }
 
-        return "redirect:/";
+
     }
 
     @Override
