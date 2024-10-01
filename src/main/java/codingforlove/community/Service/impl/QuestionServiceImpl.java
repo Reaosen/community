@@ -77,7 +77,7 @@ public class QuestionServiceImpl implements QuestionService {
         QuestionExample questionExample = new QuestionExample();
         questionExample.createCriteria()
                 .andCreatorAccountIdEqualTo(id);
-        List<Question> questions = questionMapper.selectByExampleWithBLOBsWithRowbounds(new QuestionExample(), new RowBounds(offset, size));
+        List<Question> questions = questionMapper.selectByExampleWithBLOBsWithRowbounds(questionExample, new RowBounds(offset, size));
 
         List<QuestionDTO> questionDTOS = new ArrayList<>();
 

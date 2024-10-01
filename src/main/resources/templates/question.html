@@ -70,7 +70,7 @@
                 <div class="d-flex position-relative comments" th:each="comment : ${comments}">
                     <img th:src="${comment.user.avatarUrl}"
                          class="comment-img flex-shrink-0 me-3 rounded float-start">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" th:id="${'comment-body-' + comment.id}">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" th:id="${'comment-body-' + comment.id}" style="width: 1100px">
                         <a href="#" th:text="${comment.user.name}"
                            style="font-size: 20px; text-decoration: none; color: #8bb9fe;"></a><br>
                         <div th:text="${comment.content}"></div>

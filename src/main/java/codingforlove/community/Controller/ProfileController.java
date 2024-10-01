@@ -28,7 +28,7 @@ public class ProfileController {
             //todo 未登录提醒
             return "redirect:/";
         }
-        request.getSession().setAttribute("user", user);
+        //request.getSession().setAttribute("user", user);
         if (action.equals("questions")) {
             model.addAttribute("section", "questions");
             model.addAttribute("sectionName", "我的提问");

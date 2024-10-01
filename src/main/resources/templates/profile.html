@@ -23,7 +23,8 @@
             <div class="d-flex position-relative questions-list" th:each="question : ${pagination.questions}">
                 <img th:src="${question.user.avatarUrl}" class="question-img flex-shrink-0 me-3 ">
                 <div>
-                    <h5 class="mt-0" th:text="${question.title}"></h5>
+                    <a th:href="'/question/' + ${question.id}" th:text="${question.title}"
+                       style="font-size: 20px; text-decoration: none; color: #8bb9fe;"></a><br>
                     <span th:text="${question.description}"></span>
                 </div>
             </div>
