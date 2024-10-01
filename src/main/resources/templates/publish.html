@@ -46,15 +46,16 @@
                 </div>
                 <div id="select-tag" class="tag-tab">
                     <ul class="nav nav-pills" role="tablist">
-                        <li role="presentation" class="nav-item" th:each="selectCategory: ${tags}">
+                        <li role="presentation" class="nav-item" th:each="selectCategory,selectCategoryStat: ${tags}">
                             <a th:href="${'#' + selectCategory.categoryName}" aria-controls="home" role="tab" data-bs-toggle="tab" class="nav-link"
-                               th:text="${selectCategory.categoryName}"></a>
+                               th:text="${selectCategory.categoryName}" th:class="${selectCategoryStat.first ? 'nav-link active' : 'nav-link'}"></a>
                         </li>
                     </ul>
                     <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane active" th:id="${selectCategory.categoryName}" th:each="selectCategory: ${tags}">
+                        <div role="tabpanel" class="tab-pane" th:id="${selectCategory.categoryName}" th:each="selectCategory: ${tags}"
+                             th:class="${selectCategoryStat.first ? 'tab-pane active' : 'tab-pane'}">
                             <span class="label label-info" th:each="selectTag: ${selectCategory.tags}">
-                                <span class="badge text-bg-secondary" style="margin-right: 5px"
+                                <span class="badge text-bg-secondary" style="margin-right: 5px;margin-bottom: 10px"
                                       onclick="selectTag(this)" th:data-tag="${selectTag}">[[${selectTag}]]
                                 </span>
 <!--                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"-->
