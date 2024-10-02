@@ -2,6 +2,7 @@ package codingforlove.community.Controller;
 
 import codingforlove.community.DTO.PaginationDTO;
 import codingforlove.community.Model.User;
+import codingforlove.community.Service.NotificationService;
 import codingforlove.community.Service.ProfileService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ProfileController {
     @Autowired
     private ProfileService profileService;
+    @Autowired
+    private NotificationService notificationService;
+
 
     @GetMapping("/profile/{action}")
     public String profile(HttpServletRequest request,
@@ -32,10 +36,16 @@ public class ProfileController {
         if (action.equals("questions")) {
             model.addAttribute("section", "questions");
             model.addAttribute("sectionName", "我的提问");
+            PaginationDTO paginationDTO = profileService.list(user, page, size);
+            model.addAttribute("pagination", paginationDTO);
         }
         if (action.equals("replies")) {
             model.addAttribute("section", "replies");
             model.addAttribute("sectionName", "最新消息");
+            PaginationDTO paginationDTO = notificationService.list(user.getAccountId(), page, size);
+            Integer unreadCount = notificationService.unreadCount(user.getAccountId());
+            model.addAttribute("pagination", paginationDTO);
+            model.addAttribute("unreadCount", unreadCount);
         }
         if (action.equals("stars")) {
             model.addAttribute("section", "stars");
@@ -45,8 +55,7 @@ public class ProfileController {
             model.addAttribute("section", "concerns");
             model.addAttribute("sectionName", "我的关注");
         }
-        PaginationDTO paginationDTO = profileService.profile(user, action, page, size);
-        model.addAttribute("pagination", paginationDTO);
+
         return "profile";
     }
 }

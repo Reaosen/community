@@ -47,7 +47,7 @@ public class AuthorizeServiceImpl implements AuthorizeService {
             User user = new User();
             UserExample userExample = new UserExample();
             userExample.createCriteria()
-                    .andAccountIdEqualTo(Long.valueOf(giteeUser.getAccountId()));
+                    .andAccountIdEqualTo(giteeUser.getAccountId());
             List<User> usersByAccountId = userMapper.selectByExample(userExample);
             if (usersByAccountId.size() != 0) {
                 user = usersByAccountId.get(0);

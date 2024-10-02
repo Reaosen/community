@@ -37,6 +37,7 @@
         <table tableName="user" domainObjectName="User"/>
         <table tableName="question" domainObjectName="Question"/>
         <table tableName="comment" domainObjectName="Comment"/>
+        <table tableName="notification" domainObjectName="Notification"/>
             <!-- 自增主键列 -->
 <!--            <generatedKey column="id" sqlStatement="MYSQL" identity="true"/>-->
             <!-- tinyint映射为Integer -->

@@ -34,7 +34,7 @@
                 发现
             </h2>
             <hr>
-            <div class="d-flex position-relative questions-list" th:each="question : ${pagination.questions}">
+            <div class="d-flex position-relative questions-list" th:each="question : ${pagination.getData}">
                 <img th:src="${question.user.avatarUrl}" class="question-img flex-shrink-0 me-3 ">
                 <div>
                     <a th:href="'/question/' + ${question.id}" th:text="${question.title}"

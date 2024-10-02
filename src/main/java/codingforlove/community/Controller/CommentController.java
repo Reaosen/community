@@ -9,6 +9,7 @@ import codingforlove.community.Exception.CustomizeErrorCode;
 import codingforlove.community.Model.Comment;
 import codingforlove.community.Model.User;
 import codingforlove.community.Service.CommentService;
+import codingforlove.community.Service.NotificationService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,7 @@ import java.util.List;
 public class CommentController {
     @Autowired
     private CommentService commentService;
+
 
     @ResponseBody
     @RequestMapping(value = "/comment", method = RequestMethod.POST)

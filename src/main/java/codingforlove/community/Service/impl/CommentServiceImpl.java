@@ -3,11 +3,13 @@ package codingforlove.community.Service.impl;
 import codingforlove.community.DTO.CommentCreateDTO;
 import codingforlove.community.DTO.CommentDTO;
 import codingforlove.community.Enum.CommentTypeEnum;
+import codingforlove.community.Enum.NotificationTypeEnum;
 import codingforlove.community.Exception.CustomizeErrorCode;
 import codingforlove.community.Exception.CustomizeException;
 import codingforlove.community.Mapper.*;
 import codingforlove.community.Model.*;
 import codingforlove.community.Service.CommentService;
+import codingforlove.community.Service.NotificationService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +31,8 @@ public class CommentServiceImpl implements CommentService {
     private QuestionExtMapper questionExtMapper;
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private NotificationService notificationService;
 
     @Override
     public Comment getComment(CommentCreateDTO commentDTO, HttpServletRequest request) {
@@ -57,6 +61,7 @@ public class CommentServiceImpl implements CommentService {
         }
 
         if (Objects.equals(comment.getType(), CommentTypeEnum.COMMENT.getType())){
+            //回复评论
             Comment dbComment = commentMapper.selectByPrimaryKey(comment.getParentId());
             if (dbComment == null){
                 throw new CustomizeException(CustomizeErrorCode.COMMENT_NOT_FOUND);
@@ -64,8 +69,10 @@ public class CommentServiceImpl implements CommentService {
                 commentMapper.insert(comment);
                 dbComment.setCommentCount(1L);
                 commentExtMapper.incCommentCount(dbComment);
+                notificationService.insert(NotificationTypeEnum.REPLY_COMMENT, comment);
             }
         }else {
+            //回复问题
             Question question = questionMapper.selectByPrimaryKey(comment.getParentId());
             if (question == null){
                 throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
@@ -73,6 +80,7 @@ public class CommentServiceImpl implements CommentService {
                 commentMapper.insert(comment);
                 question.setCommentCount(1L);
                 questionExtMapper.incCommentCount(question);
+                notificationService.insert(NotificationTypeEnum.REPLY_QUESTION, comment);
             }
         }
     }

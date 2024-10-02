@@ -57,19 +57,21 @@ public class QuestionServiceImpl implements QuestionService {
             questionDTO.setUser(users.get(0));
             questionDTOS.add(questionDTO);
         }
-        paginationDTO.setQuestions(questionDTOS);
+        paginationDTO.setData(questionDTOS);
 
         return paginationDTO;
     }
 
     @Override
     public PaginationDTO list(Long id, Integer page, Integer size) {
+
         PaginationDTO paginationDTO = new PaginationDTO();
         QuestionExample example = new QuestionExample();
         example.createCriteria()
                         .andCreatorAccountIdEqualTo(id);
         Integer totalCount = (int) questionMapper.countByExample(example);
         paginationDTO.setPagination(totalCount, page, size);
+
         if (page < 1) page = 1;
         if (page > paginationDTO.getTotalPage()) page = paginationDTO.getTotalPage();
 
@@ -91,7 +93,7 @@ public class QuestionServiceImpl implements QuestionService {
             questionDTO.setUser(users.get(0));
             questionDTOS.add(questionDTO);
         }
-        paginationDTO.setQuestions(questionDTOS);
+        paginationDTO.setData(questionDTOS);
 
         return paginationDTO;
     }
