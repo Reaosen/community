@@ -3,6 +3,7 @@ package codingforlove.community.Interceptor;
 import codingforlove.community.Mapper.UserMapper;
 import codingforlove.community.Model.User;
 import codingforlove.community.Model.UserExample;
+import codingforlove.community.Service.NotificationService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -17,6 +18,8 @@ import java.util.List;
 public class SessionInterceptor implements HandlerInterceptor {
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private NotificationService notificationService;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -31,6 +34,8 @@ public class SessionInterceptor implements HandlerInterceptor {
                     List<User> users = userMapper.selectByExample(userExample);
                     if (users.size() != 0) {
                         request.getSession().setAttribute("user", users.get(0));
+                        Integer unreadCount = notificationService.unreadCount(users.get(0).getAccountId());
+                        request.getSession().setAttribute("unreadCount", unreadCount);
                     }
                     break;
                 }

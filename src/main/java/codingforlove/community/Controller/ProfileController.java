@@ -43,9 +43,7 @@ public class ProfileController {
             model.addAttribute("section", "replies");
             model.addAttribute("sectionName", "最新消息");
             PaginationDTO paginationDTO = notificationService.list(user.getAccountId(), page, size);
-            Integer unreadCount = notificationService.unreadCount(user.getAccountId());
             model.addAttribute("pagination", paginationDTO);
-            model.addAttribute("unreadCount", unreadCount);
         }
         if (action.equals("stars")) {
             model.addAttribute("section", "stars");

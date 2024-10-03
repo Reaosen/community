@@ -90,7 +90,7 @@
                 </a>
                 <a href="/profile/replies"
                    th:class="${section == 'replies'}? 'active list-group-item list-group-item-action' : 'list-group-item list-group-item-action'">
-                    最新消息 <span class="badge text-bg-danger" th:if="${unreadCount != 0}" th:text="${unreadCount}"></span>
+                    最新消息 <span class="badge text-bg-danger" th:if="${unreadCount != 0}" th:text="${session.unreadCount}"></span>
                 </a>
                 <a href="/profile/stars"
                    th:class="${section == 'stars'}? 'active list-group-item list-group-item-action' : 'list-group-item list-group-item-action'">

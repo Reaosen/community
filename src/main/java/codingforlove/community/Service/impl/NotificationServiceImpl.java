@@ -81,6 +81,7 @@ public class NotificationServiceImpl implements NotificationService {
         NotificationExample notificationExample = new NotificationExample();
         notificationExample.createCriteria()
                         .andReceiverEqualTo(accountId);
+        notificationExample.setOrderByClause("status asc, gmt_create desc");
         List<Notification> notifications = notificationMapper.selectByExampleWithRowbounds(notificationExample, new RowBounds(offset, size));
 
         if (notifications.size() == 0) return paginationDTO;
