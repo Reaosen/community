@@ -1,6 +1,5 @@
 package codingforlove.community.Service.impl;
 
-import codingforlove.community.Cache.TagCache;
 import codingforlove.community.Exception.CustomizeErrorCode;
 import codingforlove.community.Exception.CustomizeException;
 import codingforlove.community.Mapper.QuestionMapper;
@@ -9,7 +8,7 @@ import codingforlove.community.Model.Question;
 import codingforlove.community.Model.QuestionExample;
 import codingforlove.community.Model.User;
 import codingforlove.community.Service.PublishService;
-import jakarta.servlet.http.HttpServletRequest;
+import codingforlove.community.Util.MyStrUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -34,6 +33,7 @@ public class PublishServiceImpl implements PublishService {
         question.setCreatorAccountId(user.getAccountId());
         question.setTitle(title);
         question.setDescription(description);
+        question.setProfile(MyStrUtil.taken(description, 256));
         question.setTag(tag);
         question.setId(id);
         question.setViewCount(0L);

@@ -3,14 +3,15 @@
 <mapper namespace="codingforlove.community.Mapper.QuestionMapper">
   <resultMap id="BaseResultMap" type="codingforlove.community.Model.Question">
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="title" jdbcType="VARCHAR" property="title" />
     <result column="creator_account_id" jdbcType="BIGINT" property="creatorAccountId" />
+    <result column="profile" jdbcType="VARCHAR" property="profile" />
     <result column="like_count" jdbcType="BIGINT" property="likeCount" />
     <result column="comment_count" jdbcType="BIGINT" property="commentCount" />
     <result column="view_count" jdbcType="BIGINT" property="viewCount" />
     <result column="tag" jdbcType="VARCHAR" property="tag" />
     <result column="gmt_create" jdbcType="BIGINT" property="gmtCreate" />
     <result column="gmt_modified" jdbcType="BIGINT" property="gmtModified" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="codingforlove.community.Model.Question">
     <result column="description" jdbcType="LONGVARCHAR" property="description" />
@@ -74,8 +75,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, title, creator_account_id, like_count, comment_count, view_count, tag, gmt_create, 
-    gmt_modified
+    id, creator_account_id, profile, like_count, comment_count, view_count, tag, gmt_create, 
+    gmt_modified, title
   </sql>
   <sql id="Blob_Column_List">
     description
@@ -129,14 +130,14 @@
     </if>
   </delete>
   <insert id="insert" parameterType="codingforlove.community.Model.Question">
-    insert into question (id, title, creator_account_id, 
+    insert into question (id, creator_account_id, profile, 
       like_count, comment_count, view_count, 
       tag, gmt_create, gmt_modified, 
-      description)
-    values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{creatorAccountId,jdbcType=BIGINT}, 
+      title, description)
+    values (#{id,jdbcType=BIGINT}, #{creatorAccountId,jdbcType=BIGINT}, #{profile,jdbcType=VARCHAR}, 
       #{likeCount,jdbcType=BIGINT}, #{commentCount,jdbcType=BIGINT}, #{viewCount,jdbcType=BIGINT}, 
       #{tag,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=BIGINT}, #{gmtModified,jdbcType=BIGINT}, 
-      #{description,jdbcType=LONGVARCHAR})
+      #{title,jdbcType=VARCHAR}, #{description,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="codingforlove.community.Model.Question">
     insert into question
@@ -144,11 +145,11 @@
       <if test="id != null">
         id,
       </if>
-      <if test="title != null">
-        title,
-      </if>
       <if test="creatorAccountId != null">
         creator_account_id,
+      </if>
+      <if test="profile != null">
+        profile,
       </if>
       <if test="likeCount != null">
         like_count,
@@ -168,6 +169,9 @@
       <if test="gmtModified != null">
         gmt_modified,
       </if>
+      <if test="title != null">
+        title,
+      </if>
       <if test="description != null">
         description,
       </if>
@@ -176,11 +180,11 @@
       <if test="id != null">
         #{id,jdbcType=BIGINT},
       </if>
-      <if test="title != null">
-        #{title,jdbcType=VARCHAR},
-      </if>
       <if test="creatorAccountId != null">
         #{creatorAccountId,jdbcType=BIGINT},
+      </if>
+      <if test="profile != null">
+        #{profile,jdbcType=VARCHAR},
       </if>
       <if test="likeCount != null">
         #{likeCount,jdbcType=BIGINT},
@@ -200,6 +204,9 @@
       <if test="gmtModified != null">
         #{gmtModified,jdbcType=BIGINT},
       </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
       <if test="description != null">
         #{description,jdbcType=LONGVARCHAR},
       </if>
@@ -217,11 +224,11 @@
       <if test="record.id != null">
         id = #{record.id,jdbcType=BIGINT},
       </if>
-      <if test="record.title != null">
-        title = #{record.title,jdbcType=VARCHAR},
-      </if>
       <if test="record.creatorAccountId != null">
         creator_account_id = #{record.creatorAccountId,jdbcType=BIGINT},
+      </if>
+      <if test="record.profile != null">
+        profile = #{record.profile,jdbcType=VARCHAR},
       </if>
       <if test="record.likeCount != null">
         like_count = #{record.likeCount,jdbcType=BIGINT},
@@ -241,6 +248,9 @@
       <if test="record.gmtModified != null">
         gmt_modified = #{record.gmtModified,jdbcType=BIGINT},
       </if>
+      <if test="record.title != null">
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
       <if test="record.description != null">
         description = #{record.description,jdbcType=LONGVARCHAR},
       </if>
@@ -252,14 +262,15 @@
   <update id="updateByExampleWithBLOBs" parameterType="map">
     update question
     set id = #{record.id,jdbcType=BIGINT},
-      title = #{record.title,jdbcType=VARCHAR},
       creator_account_id = #{record.creatorAccountId,jdbcType=BIGINT},
+      profile = #{record.profile,jdbcType=VARCHAR},
       like_count = #{record.likeCount,jdbcType=BIGINT},
       comment_count = #{record.commentCount,jdbcType=BIGINT},
       view_count = #{record.viewCount,jdbcType=BIGINT},
       tag = #{record.tag,jdbcType=VARCHAR},
       gmt_create = #{record.gmtCreate,jdbcType=BIGINT},
       gmt_modified = #{record.gmtModified,jdbcType=BIGINT},
+      title = #{record.title,jdbcType=VARCHAR},
       description = #{record.description,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -268,14 +279,15 @@
   <update id="updateByExample" parameterType="map">
     update question
     set id = #{record.id,jdbcType=BIGINT},
-      title = #{record.title,jdbcType=VARCHAR},
       creator_account_id = #{record.creatorAccountId,jdbcType=BIGINT},
+      profile = #{record.profile,jdbcType=VARCHAR},
       like_count = #{record.likeCount,jdbcType=BIGINT},
       comment_count = #{record.commentCount,jdbcType=BIGINT},
       view_count = #{record.viewCount,jdbcType=BIGINT},
       tag = #{record.tag,jdbcType=VARCHAR},
       gmt_create = #{record.gmtCreate,jdbcType=BIGINT},
-      gmt_modified = #{record.gmtModified,jdbcType=BIGINT}
+      gmt_modified = #{record.gmtModified,jdbcType=BIGINT},
+      title = #{record.title,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -283,11 +295,11 @@
   <update id="updateByPrimaryKeySelective" parameterType="codingforlove.community.Model.Question">
     update question
     <set>
-      <if test="title != null">
-        title = #{title,jdbcType=VARCHAR},
-      </if>
       <if test="creatorAccountId != null">
         creator_account_id = #{creatorAccountId,jdbcType=BIGINT},
+      </if>
+      <if test="profile != null">
+        profile = #{profile,jdbcType=VARCHAR},
       </if>
       <if test="likeCount != null">
         like_count = #{likeCount,jdbcType=BIGINT},
@@ -307,6 +319,9 @@
       <if test="gmtModified != null">
         gmt_modified = #{gmtModified,jdbcType=BIGINT},
       </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
       <if test="description != null">
         description = #{description,jdbcType=LONGVARCHAR},
       </if>
@@ -315,27 +330,29 @@
   </update>
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="codingforlove.community.Model.Question">
     update question
-    set title = #{title,jdbcType=VARCHAR},
-      creator_account_id = #{creatorAccountId,jdbcType=BIGINT},
+    set creator_account_id = #{creatorAccountId,jdbcType=BIGINT},
+      profile = #{profile,jdbcType=VARCHAR},
       like_count = #{likeCount,jdbcType=BIGINT},
       comment_count = #{commentCount,jdbcType=BIGINT},
       view_count = #{viewCount,jdbcType=BIGINT},
       tag = #{tag,jdbcType=VARCHAR},
       gmt_create = #{gmtCreate,jdbcType=BIGINT},
       gmt_modified = #{gmtModified,jdbcType=BIGINT},
+      title = #{title,jdbcType=VARCHAR},
       description = #{description,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="codingforlove.community.Model.Question">
     update question
-    set title = #{title,jdbcType=VARCHAR},
-      creator_account_id = #{creatorAccountId,jdbcType=BIGINT},
+    set creator_account_id = #{creatorAccountId,jdbcType=BIGINT},
+      profile = #{profile,jdbcType=VARCHAR},
       like_count = #{likeCount,jdbcType=BIGINT},
       comment_count = #{commentCount,jdbcType=BIGINT},
       view_count = #{viewCount,jdbcType=BIGINT},
       tag = #{tag,jdbcType=VARCHAR},
       gmt_create = #{gmtCreate,jdbcType=BIGINT},
-      gmt_modified = #{gmtModified,jdbcType=BIGINT}
+      gmt_modified = #{gmtModified,jdbcType=BIGINT},
+      title = #{title,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
   <select id="selectByExampleWithBLOBsWithRowbounds" parameterType="codingforlove.community.Model.QuestionExample" resultMap="ResultMapWithBLOBs">

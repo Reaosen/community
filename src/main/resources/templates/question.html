@@ -11,7 +11,15 @@
     <link rel="stylesheet" href="/css/bootstrap-reboot.rtl.min.css">
     <link rel="stylesheet" href="/css/bootstrap-utilities.min.css">
     <link rel="stylesheet" href="/css/bootstrap-utilities.rtl.min.css">
+    <link rel="stylesheet" href="/css/editormd.preview.min.css">
     <link rel="stylesheet" href="/css/community.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js" type="application/javascript"></script>
+    <script src="/js/bootstrap.bundle.min.js" type="application/javascript"></script>
+    <script src="/js/editormd.min.js"></script>
+    <script src="/js/lib/marked.min.js"></script>
+    <script src="/js/lib/prettify.min.js"></script>
+    <script src="/js/moment.js"></script>
+    <script src="/js/community.js"></script>
 </head>
 <body>
 <div th:insert="~{navigation :: nav}"></div>
@@ -26,7 +34,18 @@
                     作者 [[${question.user.name}]] | [[${#dates.format(question.gmtCreate, 'yyyy-MM-dd HH:mm:ss')}]] | 阅读数：[[${question.viewCount}]]
                 </span>
                 <hr>
-                <p th:text="${question.description}"></p>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="question-markdown-view">
+                    <textarea style="display:none;" th:text="${question.description}"></textarea>
+                </div>
+                <script type="text/javascript">
+                    $(function() {
+                        var testView = editormd.markdownToHTML("question-markdown-view", {
+                            // markdown : "[TOC]\n### Hello world!\n## Heading 2", // Also, you can dynamic set Markdown text
+                            // htmlDecode : true,  // Enable / disable HTML tag encode.
+                            // htmlDecode : "style,script,iframe",  // Note: If enabled, you should filter some dangerous HTML tags for website security.
+                        });
+                    });
+                </script>
                 <hr style="margin-bottom: 5px">
                 <span class="badge text-bg-secondary" th:each="tag : ${question.tag.split('，')}"
                       style="margin-right: 5px">
@@ -70,7 +89,8 @@
                 <div class="d-flex position-relative comments" th:each="comment : ${comments}">
                     <img th:src="${comment.user.avatarUrl}"
                          class="comment-img flex-shrink-0 me-3 rounded float-start">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" th:id="${'comment-body-' + comment.id}" style="width: 1100px">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" th:id="${'comment-body-' + comment.id}"
+                         style="width: 1100px">
                         <a href="#" th:text="${comment.user.name}"
                            style="font-size: 20px; text-decoration: none; color: #8bb9fe;"></a><br>
                         <div th:text="${comment.content}"></div>
@@ -160,17 +180,10 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <h4>站长卫星</h4>
                 <hr>
-                <img src="/img/wechat.jpg" alt="weChatQR" style="width: 70%">
+                <img src="/images/wechat.jpg" alt="weChatQR" style="width: 70%">
             </div>
         </div>
     </div>
 </div>
-
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js" type="application/javascript"></script>
-<script src="/js/bootstrap.bundle.min.js" type="application/javascript"></script>
-<script src="/js/moment.js"></script>
-<script src="/js/community.js"></script>
-<!--    <script src="js/bootstrap.esm.min.js" type="application/javascript"></script>-->
-<!--    <script src="js/bootstrap.min.js" type="application/javascript"></script>-->
 </body>
 </html>

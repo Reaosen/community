@@ -3,9 +3,9 @@ package codingforlove.community.Model;
 public class Question {
     private Long id;
 
-    private String title;
-
     private Long creatorAccountId;
+
+    private String profile;
 
     private Long likeCount;
 
@@ -19,6 +19,8 @@ public class Question {
 
     private Long gmtModified;
 
+    private String title;
+
     private String description;
 
     public Long getId() {
@@ -29,20 +31,20 @@ public class Question {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public Long getCreatorAccountId() {
         return creatorAccountId;
     }
 
     public void setCreatorAccountId(Long creatorAccountId) {
         this.creatorAccountId = creatorAccountId;
+    }
+
+    public String getProfile() {
+        return profile;
+    }
+
+    public void setProfile(String profile) {
+        this.profile = profile;
     }
 
     public Long getLikeCount() {
@@ -91,6 +93,14 @@ public class Question {
 
     public void setGmtModified(Long gmtModified) {
         this.gmtModified = gmtModified;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDescription() {
