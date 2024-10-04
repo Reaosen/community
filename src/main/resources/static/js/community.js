@@ -87,7 +87,7 @@ function collapseComments(e) {
             $.each(data.data.reverse(), function (index, comment) {
 
                 var timeElement = $("<div/>", {
-                    "class": "pull-right",
+                    "class": "pull-left",
                     "html": moment(comment.gmtCreate).format("YYYY-MM-DD HH:mm:ss")
                 });
                 var menuElement = $("<div/>", {
