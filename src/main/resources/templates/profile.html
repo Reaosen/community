@@ -15,7 +15,7 @@
 </head>
 <body>
 <div th:insert="~{navigation :: nav}"></div>
-<div class="container-fluid main">
+<div class="col-lg-11 col-md-11 col-sm-11 col-xs-11 main">
     <div class="row">
         <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
             <h2 style="margin-top: 15px"><span th:text="${sectionName}"></span></h2>
@@ -27,7 +27,7 @@
                     <div>
                         <a th:href="'/question/' + ${question.id}" th:text="${question.title}"
                            style="font-size: 20px; text-decoration: none; color: #8bb9fe;"></a><br>
-                        <span th:text="${question.description}"></span>
+                        <span th:text="${question.profile}"></span>
                     </div>
                 </div>
 
