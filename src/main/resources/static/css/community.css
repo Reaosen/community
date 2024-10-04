@@ -1,10 +1,15 @@
 body {
-    background: #efefef;
+    background-image: linear-gradient(to right, #fbc2eb, #a6c1ee);
 }
 
 .main {
-    background: white;
-    margin: 30px;
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 0 50px;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, 5%);
 }
 
 .btn-publish {
