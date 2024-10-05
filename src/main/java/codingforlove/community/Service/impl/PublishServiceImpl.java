@@ -8,7 +8,7 @@ import codingforlove.community.Model.Question;
 import codingforlove.community.Model.QuestionExample;
 import codingforlove.community.Model.User;
 import codingforlove.community.Service.PublishService;
-import codingforlove.community.Util.MyStrUtil;
+import codingforlove.community.Util.MyStrUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -33,7 +33,7 @@ public class PublishServiceImpl implements PublishService {
         question.setCreatorAccountId(user.getAccountId());
         question.setTitle(title);
         question.setDescription(description);
-        question.setProfile(MyStrUtil.taken(description, 256));
+        question.setProfile(MyStrUtils.taken(description, 256));
         question.setTag(tag);
         question.setId(id);
         question.setViewCount(0L);

@@ -11,6 +11,11 @@ spring:
       url: jdbc:mysql://${community.datasource.host}:${community.datasource.port}/${community.datasource.database}?serverTimezone=UTC
       username: ${community.datasource.username}
       password: ${community.datasource.password}
+  data:
+    redis:
+      host: ${community.data.redis.host}
+      port: ${community.data.redis.port}
+      database: ${community.data.redis.database}
 
 gitee:
   client:

@@ -1,8 +1,6 @@
 package codingforlove.community.Util;
 
-import java.io.UnsupportedEncodingException;
-
-public class MyStrUtil {
+public class MyStrUtils {
 
     public static String taken(String str, int n) {
         if (str == null) {

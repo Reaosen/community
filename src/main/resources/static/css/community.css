@@ -11,7 +11,17 @@ body {
     top: 50%;
     transform: translate(-50%, 5%);
 }
-
+.wrapper {
+    background-color: #fff;
+    width: 358px;
+    height: 588px;
+    border-radius: 15px;
+    padding: 0 50px;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
 .btn-publish {
     float: left;
     margin-bottom: 15px;
