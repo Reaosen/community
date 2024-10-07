@@ -6,6 +6,14 @@
     color: #fff;
     border-radius: 8px;
 }
+.captcha-btn-clicked{
+    padding: 10px;
+    width: 40%;
+    margin-bottom: 20px;
+    background-image: linear-gradient(to right, #eee, #3D3D3D);
+    color: #fff;
+    border-radius: 8px;
+}
 .captcha-item{
     display: block;
     width: 60%;

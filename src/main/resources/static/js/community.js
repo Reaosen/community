@@ -138,3 +138,31 @@ function selectTag(e){
 function showSelectTag(e){
     $("#select-tag").show();
 }
+
+function sentCode(event){
+    event.preventDefault(); // 阻止表单默认提交行为
+    var email = document.getElementById("emailInput").value;
+    var button = document.getElementById("button");
+    $.ajax({
+        type: "POST",
+        url: "/signUp",
+        contentType: "application/json",
+        data: JSON.stringify({
+            "email": email
+        }),
+        success: function (response) {
+            if (response.code === 200) {
+                if (button.classList.contains("captcha-btn")) {
+                    button.classList.remove("captcha-btn");
+                    button.classList.add("captcha-btn-clicked");
+
+                }
+            }else {
+                if (response.code === 2007){
+                    alert(response.message);
+                }
+            }
+        },
+        dataType: "json"
+    });
+}

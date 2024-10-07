@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loki注册</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/bootstrap.rtl.min.css">
     <link rel="stylesheet" href="/css/bootstrap-grid.min.css">
@@ -14,18 +15,20 @@
     <link rel="stylesheet" href="/css/community.css">
     <link rel="stylesheet" href="/css/login.css">
     <link rel="stylesheet" href="/css/signUp.css">
-    <title>Loki注册</title>
+    <script src="/js/jquery-3.7.1.js"></script>
+    <script src="/js/community.js"></script>
 </head>
 <body>
 <div class="login-container">
     <div class="wrapper">
         <div class="login-header">Loki注册</div>
         <div>
-            <input type="text" name="username" placeholder="登录邮箱" class="input-item form-control">
+            <input type="text" name="email" id="emailInput" placeholder="登录邮箱" class="input-item form-control">
             <div class="input-group">
                 <input type="text" name="captcha" maxlength="6" class="captcha-item form-control" placeholder="验证码"
                        style="border-radius: 8px;">
-                <button class="captcha-btn btn btn-outline-secondary" type="button" style="border-radius: 8px;">发送验证码
+                <button class="captcha-btn btn btn-outline-secondary" id="captcha-button" type="button" style="border-radius: 8px;"
+                        onclick="sentCode(event)">发送验证码
                 </button>
             </div>
             <input type="password" name="password" placeholder="密码" class="input-item form-control">
@@ -33,5 +36,26 @@
         </div>
     </div>
 </div>
+
+<!-- 隐藏字段用于保存表单数据 -->
+<input type="hidden" id="hidden_username">
+<input type="hidden" id="hidden_captcha">
+<input type="hidden" id="hidden_password">
+
+<script>
+    // 保存表单数据到隐藏字段
+    function saveFormData() {
+        document.getElementById("hidden_username").value = document.querySelector('input[name="username"]').value;
+        document.getElementById("hidden_captcha").value = document.querySelector('input[name="captcha"]').value;
+        document.getElementById("hidden_password").value = document.querySelector('input[name="password"]').value;
+    }
+
+    // 页面加载时填充表单数据
+    window.onload = function() {
+        document.querySelector('input[name="username"]').value = document.getElementById("hidden_username").value;
+        document.querySelector('input[name="captcha"]').value = document.getElementById("hidden_captcha").value;
+        document.querySelector('input[name="password"]').value = document.getElementById("hidden_password").value;
+    }
+</script>
 </body>
 </html>

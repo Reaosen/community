@@ -1,5 +1,6 @@
 package codingforlove.community;
 
+import cn.hutool.core.util.RandomUtil;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -7,7 +8,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 class CommunityApplicationTests {
 
     @Test
-    void contextLoads() {
+    void test() {
+        System.out.println(RandomUtil.randomNumbers(6));
     }
 
 }

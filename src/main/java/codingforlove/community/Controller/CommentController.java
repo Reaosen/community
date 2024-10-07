@@ -9,7 +9,6 @@ import codingforlove.community.Exception.CustomizeErrorCode;
 import codingforlove.community.Model.Comment;
 import codingforlove.community.Model.User;
 import codingforlove.community.Service.CommentService;
-import codingforlove.community.Service.NotificationService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,7 +31,7 @@ public class CommentController {
             return ResultDTO.errorOf(CustomizeErrorCode.NO_LOGIN);
         }
         if (commentCreateDTO == null || StrUtil.isBlank(commentCreateDTO.getContent())){
-            return ResultDTO.errorOf(CustomizeErrorCode.CONTENT_IS_EMPTY);
+            return ResultDTO.errorOf(CustomizeErrorCode.IS_EMPTY);
         }
         Comment comment = commentService.getComment(commentCreateDTO, request);
         commentService.insert(comment);

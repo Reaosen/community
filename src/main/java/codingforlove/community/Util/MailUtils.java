@@ -1,5 +1,7 @@
 package codingforlove.community.Util;
 
+import codingforlove.community.DTO.EmailDTO;
+
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
@@ -9,17 +11,17 @@ import java.util.Properties;
  * 发邮件工具类
  */
 public final class MailUtils {
-    private static final String USER = "xxxxxxxxx@.com"; // 发件人称号，同邮箱地址※
-    private static final String PASSWORD = "xxxxxxxxx"; // 授权码，开启SMTP时显示※
+    private static final String USER = "Reaosen@163.com"; // 发件人称号，同邮箱地址※
+    private static final String PASSWORD = "FWdAr5qmhE2KFGha"; // 授权码，开启SMTP时显示※
 
     /**
      *
-     * @param to 收件人邮箱
+     * @param emailDTO 收件人邮箱
      * @param text 邮件正文
      * @param title 标题
      */
     /* 发送验证信息的邮件 */
-    public static boolean sendMail(String to, String text, String title){
+    public static boolean sendMail(EmailDTO emailDTO, String text, String title){
         try {
             final Properties props = new Properties();
             props.put("mail.smtp.auth", "true");
@@ -53,6 +55,7 @@ public final class MailUtils {
             message.setFrom(form);
 
             // 设置收件人
+            String to = emailDTO.getEmail();
             InternetAddress toAddress = new InternetAddress(to);
             message.setRecipient(Message.RecipientType.TO, toAddress);
 
@@ -71,7 +74,9 @@ public final class MailUtils {
     }
 
     public static void main(String[] args) throws Exception { // 做测试用
-        MailUtils.sendMail("xxxxxx@qq.com","你好，这是一封测试邮件，无需回复。","测试邮件");//填写接收邮箱※
+        EmailDTO emailDTO = new EmailDTO();
+        emailDTO.setEmail("qls18230040072@163.com");
+        MailUtils.sendMail(emailDTO,"123456","测试邮件");//填写接收邮箱※
         System.out.println("发送成功");
     }
 

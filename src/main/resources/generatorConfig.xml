@@ -38,6 +38,7 @@
         <table tableName="question" domainObjectName="Question"/>
         <table tableName="comment" domainObjectName="Comment"/>
         <table tableName="notification" domainObjectName="Notification"/>
+        <table tableName="emailCode" domainObjectName="EmailCode"/>
             <!-- 自增主键列 -->
 <!--            <generatedKey column="id" sqlStatement="MYSQL" identity="true"/>-->
             <!-- tinyint映射为Integer -->

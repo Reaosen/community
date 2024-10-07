@@ -10,6 +10,7 @@ public class FileController {
     @RequestMapping("file/upload")
     @ResponseBody
     public FileResultDTO upload(){
+        // todo 未完成的文件云存储
         FileResultDTO fileResultDTO = new FileResultDTO();
         fileResultDTO.setSuccess(1);
         fileResultDTO.setMessage("success");
