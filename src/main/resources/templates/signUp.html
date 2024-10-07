@@ -25,14 +25,14 @@
         <div>
             <input type="text" name="email" id="emailInput" placeholder="登录邮箱" class="input-item form-control">
             <div class="input-group">
-                <input type="text" name="captcha" maxlength="6" class="captcha-item form-control" placeholder="验证码"
+                <input type="text" name="captcha" id="captchaInput" maxlength="6" class="captcha-item form-control" placeholder="验证码"
                        style="border-radius: 8px;">
                 <button class="captcha-btn btn btn-outline-secondary" id="captcha-button" type="button" style="border-radius: 8px;"
                         onclick="sentCode(event)">发送验证码
                 </button>
             </div>
-            <input type="password" name="password" placeholder="密码" class="input-item form-control">
-            <div class="login-btn btn btn-primary">注册</div>
+            <input type="password" name="password" id="passwordInput" placeholder="密码" class="input-item form-control">
+            <div class="login-btn btn btn-primary" onclick="register()">注册</div>
         </div>
     </div>
 </div>

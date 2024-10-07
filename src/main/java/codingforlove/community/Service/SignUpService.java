@@ -1,7 +1,11 @@
 package codingforlove.community.Service;
 
-import codingforlove.community.DTO.EmailDTO;
+import codingforlove.community.DTO.SignUpDTO;
 
 public interface SignUpService {
-    String  insert(EmailDTO email);
+    String insertEmailCode(SignUpDTO email);
+
+    void codeCompare(SignUpDTO signUpDTO);
+
+    void insert(SignUpDTO signUpDTO);
 }

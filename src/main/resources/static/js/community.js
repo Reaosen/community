@@ -166,3 +166,29 @@ function sentCode(event){
         dataType: "json"
     });
 }
+
+function register(){
+    var email = document.getElementById("emailInput").value;
+    var captcha = document.getElementById("captchaInput").value;
+    var password = document.getElementById("passwordInput").value;
+    $.ajax({
+        type: "POST",
+        url: "/register",
+        contentType: "application/json",
+        data: JSON.stringify({
+            "email": email,
+            "code": captcha,
+            "password": password
+        }),
+        success: function (response) {
+            if (response.code === 200) {
+
+            }else {
+                if (response.code === 2007){
+                    alert(response.message);
+                }
+            }
+        },
+        dataType: "json"
+    });
+}

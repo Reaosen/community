@@ -1,11 +1,12 @@
 package codingforlove.community.Controller;
 
+import cn.hutool.core.util.RandomUtil;
 import cn.hutool.core.util.StrUtil;
-import codingforlove.community.DTO.CommentCreateDTO;
-import codingforlove.community.DTO.EmailDTO;
+import codingforlove.community.DTO.SignUpDTO;
 import codingforlove.community.DTO.ResultDTO;
 import codingforlove.community.Exception.CustomizeErrorCode;
 import codingforlove.community.Exception.CustomizeException;
+import codingforlove.community.Model.User;
 import codingforlove.community.Service.SignUpService;
 import codingforlove.community.Util.MailUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,17 +22,16 @@ public class SignUpController {
 
     @GetMapping("/signUp")
     public String signUp(Model model){
-        model.addAttribute("codeStatus", 0);
         return "signUp";
     }
 
     @RequestMapping(value = "/signUp", method = RequestMethod.POST)
     @ResponseBody
-    public Object sentCode(@RequestBody EmailDTO emailDTO, Model model){
+    public Object sentCode(@RequestBody SignUpDTO emailDTO, Model model){
         if (emailDTO == null || StrUtil.isBlank(emailDTO.getEmail())){
             throw new CustomizeException(CustomizeErrorCode.IS_EMPTY);
         }
-        String emailCode = signUpService.insert(emailDTO);
+        String emailCode = signUpService.insertEmailCode(emailDTO);
         String text = "<!DOCTYPE html>\n" +
                 "<html lang=\"zh-CN\">\n" +
                 "<head>\n" +
@@ -51,5 +51,13 @@ public class SignUpController {
         MailUtils.sendMail(emailDTO, text, "您的Loki验证码为：" + emailCode);
         model.addAttribute("codeStatus", 1);
         return ResultDTO.okOf();
+    }
+
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public Object signUp(@RequestBody SignUpDTO signUpDTO){
+        signUpService.codeCompare(signUpDTO);
+        signUpService.insert(signUpDTO);
+        //TODO 不能跳转
+        return "redirect:/login";
     }
 }
