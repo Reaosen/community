@@ -2,6 +2,7 @@ package codingforlove.community.Controller;
 
 import codingforlove.community.DTO.CommentDTO;
 import codingforlove.community.DTO.QuestionDTO;
+import codingforlove.community.DTO.ResultDTO;
 import codingforlove.community.Enum.CommentTypeEnum;
 import codingforlove.community.Service.CommentService;
 import codingforlove.community.Service.QuestionService;
@@ -11,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import java.util.List;
 
 
@@ -33,8 +36,9 @@ public class QuestionController {
     }
 
     @DeleteMapping("/question/{id}/delete")
-    public String delete(@PathVariable(value = "id") Long id){
+    @ResponseBody
+    public Object delete(@PathVariable(value = "id") Long id){
         questionService.deleteById(id);
-        return "redirect:/";
+        return ResultDTO.okOf();
     }
 }

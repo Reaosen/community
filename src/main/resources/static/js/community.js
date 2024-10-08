@@ -63,7 +63,9 @@ function deleteQuestion() {
         type: "DELETE",
         url: "/question/" + questionId + "/delete",
         success: function (response) {
-            if (response.code !== 200) {
+            if (response.code === 200) {
+                window.location.href = "/";
+            }else {
                 alert(response.message);
             }
         }
@@ -138,7 +140,9 @@ function selectTag(e){
 function showSelectTag(e){
     $("#select-tag").show();
 }
-
+/*
+    发送邮箱验证
+ */
 function sentCode(event){
     event.preventDefault(); // 阻止表单默认提交行为
     var email = document.getElementById("emailInput").value;
@@ -155,8 +159,8 @@ function sentCode(event){
                 if (button.classList.contains("captcha-btn")) {
                     button.classList.remove("captcha-btn");
                     button.classList.add("captcha-btn-clicked");
-
                 }
+                alert(response.message);
             }else {
                 if (response.code === 2007){
                     alert(response.message);
@@ -182,11 +186,9 @@ function register(){
         }),
         success: function (response) {
             if (response.code === 200) {
-
+                    window.location.href = "/login";
             }else {
-                if (response.code === 2007){
                     alert(response.message);
-                }
             }
         },
         dataType: "json"

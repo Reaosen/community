@@ -54,10 +54,10 @@ public class SignUpController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @ResponseBody
     public Object signUp(@RequestBody SignUpDTO signUpDTO){
         signUpService.codeCompare(signUpDTO);
         signUpService.insert(signUpDTO);
-        //TODO 不能跳转
-        return "redirect:/login";
+        return ResultDTO.okOf();
     }
 }
