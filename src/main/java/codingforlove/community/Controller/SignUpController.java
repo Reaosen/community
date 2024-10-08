@@ -1,12 +1,10 @@
 package codingforlove.community.Controller;
 
-import cn.hutool.core.util.RandomUtil;
 import cn.hutool.core.util.StrUtil;
-import codingforlove.community.DTO.SignUpDTO;
+import codingforlove.community.DTO.UndefinedUserDTO;
 import codingforlove.community.DTO.ResultDTO;
 import codingforlove.community.Exception.CustomizeErrorCode;
 import codingforlove.community.Exception.CustomizeException;
-import codingforlove.community.Model.User;
 import codingforlove.community.Service.SignUpService;
 import codingforlove.community.Util.MailUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +25,7 @@ public class SignUpController {
 
     @RequestMapping(value = "/signUp", method = RequestMethod.POST)
     @ResponseBody
-    public Object sentCode(@RequestBody SignUpDTO emailDTO, Model model){
+    public Object sentCode(@RequestBody UndefinedUserDTO emailDTO, Model model){
         if (emailDTO == null || StrUtil.isBlank(emailDTO.getEmail())){
             throw new CustomizeException(CustomizeErrorCode.IS_EMPTY);
         }
@@ -55,7 +53,7 @@ public class SignUpController {
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     @ResponseBody
-    public Object signUp(@RequestBody SignUpDTO signUpDTO){
+    public Object signUp(@RequestBody UndefinedUserDTO signUpDTO){
         signUpService.codeCompare(signUpDTO);
         signUpService.insert(signUpDTO);
         return ResultDTO.okOf();

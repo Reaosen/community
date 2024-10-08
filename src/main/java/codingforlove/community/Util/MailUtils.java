@@ -1,6 +1,6 @@
 package codingforlove.community.Util;
 
-import codingforlove.community.DTO.SignUpDTO;
+import codingforlove.community.DTO.UndefinedUserDTO;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
@@ -21,7 +21,7 @@ public final class MailUtils {
      * @param title 标题
      */
     /* 发送验证信息的邮件 */
-    public static boolean sendMail(SignUpDTO emailDTO, String text, String title){
+    public static boolean sendMail(UndefinedUserDTO emailDTO, String text, String title){
         try {
             final Properties props = new Properties();
             props.put("mail.smtp.auth", "true");
@@ -74,7 +74,7 @@ public final class MailUtils {
     }
 
     public static void main(String[] args) throws Exception { // 做测试用
-        SignUpDTO emailDTO = new SignUpDTO();
+        UndefinedUserDTO emailDTO = new UndefinedUserDTO();
         emailDTO.setEmail("qls18230040072@163.com");
         MailUtils.sendMail(emailDTO,"123456","测试邮件");//填写接收邮箱※
         System.out.println("发送成功");

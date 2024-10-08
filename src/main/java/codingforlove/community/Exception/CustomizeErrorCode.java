@@ -12,9 +12,8 @@ public enum CustomizeErrorCode implements ICustomizeErrorCode{
     READ_NOTIFICATION_FAIL(2008, "不能看别人的信息哦。"),
     NOTIFICATION_NOT_FOUND(2009, "你找的消息不在了，要不要换一个试试？"),
     EMAIL_CODE_WRONG(2010, "验证码或邮箱错误。"),
-
-
-    ;
+    USER_NOT_FOUND(2011,"欸？没有见过你啊？先去注册吧。" ),
+    PASSWORD_OR_EMAIL_WRONG(2012, "用户名或密码错误。");
 
     private String message;
     private Integer code;

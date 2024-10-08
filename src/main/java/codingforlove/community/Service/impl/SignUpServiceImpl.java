@@ -1,8 +1,7 @@
 package codingforlove.community.Service.impl;
 
 import cn.hutool.core.util.RandomUtil;
-import codingforlove.community.DTO.SignUpDTO;
-import codingforlove.community.DTO.UserDTO;
+import codingforlove.community.DTO.UndefinedUserDTO;
 import codingforlove.community.Exception.CustomizeErrorCode;
 import codingforlove.community.Exception.CustomizeException;
 import codingforlove.community.Mapper.EmailCodeMapper;
@@ -25,7 +24,7 @@ public class SignUpServiceImpl implements SignUpService {
     private UserMapper userMapper;
 
     @Override
-    public String insertEmailCode(SignUpDTO emailDTO) {
+    public String insertEmailCode(UndefinedUserDTO emailDTO) {
         String emailCode = RandomUtil.randomNumbers(6);
         EmailCode code = new EmailCode();
         code.setEmail(emailDTO.getEmail());
@@ -35,7 +34,7 @@ public class SignUpServiceImpl implements SignUpService {
     }
 
     @Override
-    public void codeCompare(SignUpDTO signUpDTO) {
+    public void codeCompare(UndefinedUserDTO signUpDTO) {
 
         EmailCodeExample codeExample = new EmailCodeExample();
         codeExample.createCriteria()
@@ -48,7 +47,7 @@ public class SignUpServiceImpl implements SignUpService {
     }
 
     @Override
-    public void insert(SignUpDTO signUpDTO) {
+    public void insert(UndefinedUserDTO signUpDTO) {
         User user = new User();
         user.setAccountId(Long.valueOf(RandomUtil.randomNumbers(9)));
         user.setEmail(signUpDTO.getEmail());

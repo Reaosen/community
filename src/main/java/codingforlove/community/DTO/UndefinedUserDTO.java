@@ -3,7 +3,7 @@ package codingforlove.community.DTO;
 import lombok.Data;
 
 @Data
-public class SignUpDTO {
+public class UndefinedUserDTO {
     private String email;
     private String code;
     private String password;

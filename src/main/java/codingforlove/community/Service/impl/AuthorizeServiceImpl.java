@@ -63,7 +63,6 @@ public class AuthorizeServiceImpl implements AuthorizeService {
             UserDTO userDTO = new UserDTO();
             BeanUtils.copyProperties(user, userDTO);
             response.addCookie(new Cookie("token", user.getToken()));
-
         }
     }
 }
