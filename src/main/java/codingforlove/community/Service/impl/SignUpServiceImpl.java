@@ -54,6 +54,9 @@ public class SignUpServiceImpl implements SignUpService {
         user.setPassword(signUpDTO.getPassword());
         user.setGmtCreate(System.currentTimeMillis());
         user.setGmtModified(System.currentTimeMillis());
+        user.setName(RandomUtil.randomString(6));
+        user.setAvatarUrl("/images/defaultIcon.jpg");
+        user.setBio("该用户很懒，什么都没有写.");
         userMapper.insert(user);
     }
 }

@@ -40,9 +40,6 @@ public class LoginServiceImpl implements LoginService {
         // 登录成功 写cookie和session
         User user = users.get(0);
         user.setToken(UUID.randomUUID().toString());
-        user.setName(RandomUtil.randomString(6));
-        user.setAvatarUrl("/images/defaultIcon.jpg");
-        user.setBio("该用户很懒，什么都没有写.");
         userMapper.updateByPrimaryKey(user);
         response.addCookie(new Cookie("token", user.getToken()));
     }

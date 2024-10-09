@@ -2,6 +2,8 @@ package codingforlove.community.Service.impl;
 
 import codingforlove.community.DTO.AccessTokenDTO;
 import codingforlove.community.DTO.UserDTO;
+import codingforlove.community.Exception.CustomizeErrorCode;
+import codingforlove.community.Exception.CustomizeException;
 import codingforlove.community.Mapper.UserMapper;
 import codingforlove.community.Model.User;
 import codingforlove.community.Model.UserExample;
@@ -31,7 +33,7 @@ public class AuthorizeServiceImpl implements AuthorizeService {
     @Value("${gitee.grant.type}")
     private String grantType;
     @Override
-    public void giteeCallback(String code, HttpServletResponse response) {
+    public UserDTO giteeCallback(String code, HttpServletResponse response) {
         AccessTokenDTO accessTokenDTO = new AccessTokenDTO();
         accessTokenDTO.setCode(code);
         accessTokenDTO.setClient_id(clientId);
@@ -63,6 +65,8 @@ public class AuthorizeServiceImpl implements AuthorizeService {
             UserDTO userDTO = new UserDTO();
             BeanUtils.copyProperties(user, userDTO);
             response.addCookie(new Cookie("token", user.getToken()));
+            return userDTO;
         }
+        throw new CustomizeException(CustomizeErrorCode.SYS_ERROR);
     }
 }

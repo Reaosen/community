@@ -130,15 +130,15 @@
                 </div>
             </div>
             <!--回复框-->
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="comment_section">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="comment_section" th:if="${user.accountId != null}">
                 <h3><span>提交回复</span></h3>
                 <hr>
                 <!--            todo 回复展示的用户数据不对,应是登录用户,现在为问题发起用户-->
                 <div class="d-flex position-relative">
-                    <img th:src="${question.user.avatarUrl}"
+                    <img th:src="${user.avatarUrl}"
                          class="comment-img flex-shrink-0 me-3 rounded float-start">
                     <div style="padding-top: 21px">
-                        <a href="#" th:text="${question.user.name}"
+                        <a href="#" th:text="${user.name}"
                            style="font-size: 20px; text-decoration: none; color: #8bb9fe;"></a><br>
                     </div>
                 </div>

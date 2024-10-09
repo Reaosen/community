@@ -1,11 +1,13 @@
 package codingforlove.community.Controller;
 
+import codingforlove.community.DTO.UserDTO;
 import codingforlove.community.Service.AuthorizeService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -18,8 +20,9 @@ public class AuthorizeController {
 
     @GetMapping("/giteeCallback")
     public String giteeCallback(@RequestParam(name = "code") String code,
-                                HttpServletResponse response) {
-        authorizeService.giteeCallback(code, response);
+                                HttpServletResponse response,
+                                Model model) {
+        UserDTO userDTO = authorizeService.giteeCallback(code, response);
         return "redirect:/";
     }
 

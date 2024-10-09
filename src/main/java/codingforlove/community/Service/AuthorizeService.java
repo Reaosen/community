@@ -1,8 +1,9 @@
 package codingforlove.community.Service;
 
+import codingforlove.community.DTO.UserDTO;
 import jakarta.servlet.http.HttpServletResponse;
 
 public interface AuthorizeService {
 
-    void giteeCallback(String code, HttpServletResponse response);
+    UserDTO giteeCallback(String code, HttpServletResponse response);
 }
