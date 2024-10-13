@@ -1,0 +1,15 @@
+package codingforlove.community.DTO;
+
+import lombok.Data;
+import org.jetbrains.annotations.NotNull;
+
+@Data
+public class HotTagDTO implements Comparable{
+    private String name;
+    private Integer priority;
+
+    @Override
+    public int compareTo(@NotNull Object o) {
+        return this.priority - ((HotTagDTO)o).priority;
+    }
+}

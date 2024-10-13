@@ -73,7 +73,14 @@
             </nav>
         </div>
         <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
-            <h3 style="margin-top: 15px">热点话题</h3>
+            <h2 style="margin-top: 15px">热点话题</h2>
+            <hr>
+            <ul style="list-style: none">
+                <li th:each="tag : ${tags}" class="question-related">
+                    <a th:href="@{'/question/' + ${relatedQuestion.id}}" th:text="${relatedQuestion.title}"
+                       class="question-related-a"></a>
+                </li>
+            </ul>
         </div>
     </div>
 </div>

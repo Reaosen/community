@@ -33,6 +33,7 @@ public class QuestionController {
 
     @GetMapping("/question/{id}")
     public String question(@PathVariable(value = "id") Long id, Model model, HttpServletRequest request){
+        //TODO 已知bug：新启动服务器后未登录情况下不能进入问题页面
         QuestionDTO questionDTO = questionService.getById(id);
         List<CommentDTO> comments = commentService.listByIdAndType(id, CommentTypeEnum.QUESTION);
         List<QuestionDTO> relatedQuestions = questionService.selectRelated(questionDTO);
